@@ -1,0 +1,35 @@
+[user]
+	name = Pierre-Etienne Bougue
+	email = pierre-etienne.bougue@canaltp.fr
+
+[core]
+ 	excludesfile = ~/.gitignore 
+
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+	ui = true
+[merge]
+	tool = meld
+[alias]
+	amend = commit --amend
+	st = status -sb
+	smu = submodule update
+	chs = "!f() { git checkout $1; git submodule update}; f"
+	rbs = "!f() { git rebase $@; git submodule update}; f"
+	ch = checkout
+	who = shortlog -sne
+	oneline = log --pretty=oneline --abbrev-commit --graph
+	changes = diff --name-status
+	dic = diff --cached
+	diffstat = diff --stat
+	lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
+	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+	lg = !"git lg1"    #show stash by regexp on the name
+	sshow = "!f() { git stash show stash^{/$*} -p; }; f"
+	sapply = "!f() { git stash apply stash^{/$*}; }; f"
+	up = !git pull --rebase && git submodule update
+	# fetch a PR and create a new branch with it's number
+	pr = "!f() { git fetch -fu ${2:-canaltp} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f" 

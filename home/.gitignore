@@ -1,0 +1,7 @@
+.cproject
+.project
+.autotools
+.env
+.idea
+dev_settings.py
+CMakeLists.txt.user.*
