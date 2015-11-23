@@ -1,2 +1,2 @@
 # debian-utils
-Various linux/debian/ubuntu conf & script 
+Various linux/debian/ubuntu confs & scripts
