@@ -1,0 +1,43 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "canaltp"]
+	url = https://github.com/CanalTP/navitia
+	fetch = +refs/heads/*:refs/remotes/canaltp/*
+[remote "origin"]
+	url = git@github.com:pbougue/navitia.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[remote "texitoi"]
+	url = git@github.com:texitoi/navitia.git
+	fetch = +refs/heads/*:refs/remotes/texitoi/*
+[remote "antoine-de"]
+	url = git@github.com:antoine-de/navitia.git
+	fetch = +refs/heads/*:refs/remotes/antoine-de/*
+[branch "dev"]
+	remote = canaltp 
+	merge = refs/heads/dev
+[submodule "source/chaos-proto"]
+	url = git@github.com:CanalTP/chaos-proto.git
+[submodule "source/linenoise"]
+	url = git@github.com:antirez/linenoise.git
+[submodule "source/navitia-proto"]
+	url = git@github.com:CanalTP/navitia-proto.git
+[submodule "source/third_party/SimpleAmqpClient"]
+	url = git@github.com:canaltp/SimpleAmqpClient.git
+[submodule "source/third_party/librabbitmq-c"]
+	url = git@github.com:alanxz/rabbitmq-c.git
+[submodule "source/third_party/osmpbfreader"]
+	url = git@github.com:CanalTP/libosmpbfreader.git
+[submodule "source/utils"]
+	url = git@github.com:CanalTP/utils.git
+[gui]
+	wmstate = normal
+	geometry = 958x1021+4800+0 217 444
+[remote "xlqian"]
+	url = git@github.com:xlqian/navitia.git
+	fetch = +refs/heads/*:refs/remotes/xlqian/*
+[branch "Fix_disruption_for_stop-point"]
+	remote = xlqian
+	merge = refs/heads/Fix_disruption_for_stop-point
