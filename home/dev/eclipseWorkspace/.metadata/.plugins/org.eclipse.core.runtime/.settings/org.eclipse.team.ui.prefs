@@ -1,0 +1,8 @@
+PROBLEMS_FILTERS_MIGRATE=true
+SWITCH_PERSPECTIVE_ON_PROJECT_CREATION=always
+TASKS_FILTERS_MIGRATE=true
+eclipse.preferences.version=1
+org.eclipse.team.ui.first_time=false
+platformState=1367509938577
+quickStart=false
+tipsAndTricks=true

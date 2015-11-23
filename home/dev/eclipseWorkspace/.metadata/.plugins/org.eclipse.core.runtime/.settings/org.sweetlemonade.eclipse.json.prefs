@@ -1,0 +1,13 @@
+colorArrayBracket=255,255,255
+colorBoolean=152,0,152
+colorBooleanEnabled=true
+colorBooleanStyle=1
+colorBracket=255,255,255
+colorDefault=255,255,255
+colorKey=0,194,0
+colorMatchBracket=255,255,255
+colorNull=255,255,255
+colorNumber=193,124,124
+colorObjectBracket=255,255,255
+colorString=101,101,255
+eclipse.preferences.version=1
