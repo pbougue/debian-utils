@@ -1,7 +1,10 @@
+.vscode
 .cproject
 .project
 .autotools
 .env
 .idea
+**.pyc
+.cache
 dev_settings.py
 CMakeLists.txt.user.*

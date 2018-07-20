@@ -1,0 +1,83 @@
+# custom exports
+
+# To activate add (and uncomment) the following to your .bashrc or .zshrc:
+# if [ -f ~/.bash_profile ]; then
+#     . ~/.bash_profile
+# fi
+
+
+# zsh option
+setopt no_share_history
+
+# zprezto modules added: 'git' 'python' 'syntax-highlighting' 'history-substring-search'
+# Result:
+# zstyle ':prezto:load' pmodule \
+#   'environment' \
+#   'terminal' \
+#   'editor' \
+#   'history' \
+#   'directory' \
+#   'spectrum' \
+#   'utility' \
+#   'completion' \
+#   'git' \
+#   'python' \
+#   'syntax-highlighting' \
+#   'history-substring-search' \
+#   'prompt'
+
+
+# Navitia
+export PATH="$HOME/dev/build/navitia/releaseClang/ed:$HOME/dev/build/navitia/releaseClang/kraken:$PATH"
+
+
+# Github API token
+export HOMEBREW_GITHUB_API_TOKEN=0b4eb022243c3e54bd011a41a074cd9abf77a55d
+
+
+# Python
+export WORKON_HOME="/home/pbougue/.venv"
+
+
+#Golang
+# export GOPATH=$HOME/gopath:$HOME/dev/go
+export GOPATH=$HOME/dev/go
+# export PATH="/usr/local/go/bin:$PATH"
+export PATH="$GOPATH:$GOPATH/bin:$PATH"
+
+
+# Rust
+export RUST_SRC_PATH=${HOME}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
+#export RLS_ROOT=$HOME/dev/source/rls
+export PATH="$HOME/.cargo/bin:$PATH"
+
+
+# nvm
+export NVM_DIR="/home/pbougue/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+
+# maven
+export PATH="$HOME/local/bin/maven/apache-maven-3.5.0/bin:$PATH"
+
+# Common
+ulimit -c unlimited
+export PATH="$HOME/local/bin:$PATH"
+
+
+
+
+# -------------------------------------
+# Archive from 20180701 (just in case):
+
+# export WORKON_HOME="/home/pbougue/.venv"
+
+# # export GOPATH=$HOME/gopath:$HOME/dev/go
+# export GOPATH=$HOME/dev/go
+# export RUST_SRC_PATH=${HOME}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
+# #export RLS_ROOT=$HOME/dev/source/rls
+
+# export PATH="$HOME/local/bin:$HOME/dev/build/navitia/releaseClang/ed:$HOME/dev/build/navitia/releaseClang/kraken:/usr/local/go/bin:$GOPATH:$GOPATH/bin:$HOME/local/bin/maven/apache-maven-3.5.0/bin:$HOME/.cargo/bin:$PATH"
+
+# export NVM_DIR="/home/pbougue/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

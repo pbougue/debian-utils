@@ -16,9 +16,9 @@
 [alias]
 	amend = commit --amend
 	st = status -sb
-	smu = submodule update
-	chs = "!f() { git checkout $1; git submodule update}; f"
-	rbs = "!f() { git rebase $@; git submodule update}; f"
+	smu = submodule update --recursive
+	chs = "!f() { git checkout $1; git submodule update --recursive}; f"
+	rbs = "!f() { git rebase $@; git submodule update --recursive}; f"
 	ch = checkout
 	who = shortlog -sne
 	oneline = log --pretty=oneline --abbrev-commit --graph
@@ -30,6 +30,6 @@
 	lg = !"git lg1"    #show stash by regexp on the name
 	sshow = "!f() { git stash show stash^{/$*} -p; }; f"
 	sapply = "!f() { git stash apply stash^{/$*}; }; f"
-	up = !git pull --rebase && git submodule update
+	up = !git pull --rebase && git submodule update --recursive
 	# fetch a PR and create a new branch with it's number
 	pr = "!f() { git fetch -fu ${2:-canaltp} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f" 
