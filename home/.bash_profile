@@ -25,6 +25,9 @@ setopt no_share_history
 #   'syntax-highlighting' \
 #   'history-substring-search' \
 #   'prompt'
+#
+# for an easier prompt, modify sorin profile (blue to light blue):
+# change '4' to '12' in .zprezto/modules/prompt/functions/prompt_sorin_setup
 
 
 # Navitia
