@@ -21,8 +21,8 @@ maklangfuntion() {
 alias maklang='make'
 # alias makpbf='make protobuf_files'
 alias makpbf='echo "protobuf_files: nothing to do"'
-alias makdockertest='workon tyr && make docker_test && workon jormungandr'
-alias maktyrtest='workon tyr && PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/tyr py.test --doctest-modules ~/dev/sources/navitia/source/tyr/tests && workon jormungandr'
+alias makdockertest='workon tyr && make docker_test ; workon jormungandr'
+alias maktyrtest='workon tyr && PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/tyr py.test --doctest-modules ~/dev/sources/navitia/source/tyr/tests ; workon jormungandr'
 alias makjormuntest='workon jormungandr && JORMUNGANDR_USE_SERPY=True PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/jormungandr/jormungandr py.test --doctest-modules ~/dev/sources/navitia/source/jormungandr/jormungandr'
 alias makintegrationtest='workon jormungandr && JORMUNGANDR_USE_SERPY=True KRAKEN_BUILD_DIR=~/dev/build/navitia/releaseClang PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/jormungandr/tests py.test --doctest-modules ~/dev/sources/navitia/source/jormungandr/tests'
 
@@ -32,12 +32,24 @@ alias maked='makpbf && maked_only; maklang -j6 -k kraken; maklang -j6 -k && makt
 alias makraken='makpbf && maklang -j6 -k kraken; maked_only; maklang -j6 -k && maktest'
 alias makall='makpbf && maklang -j6 -k && maktest'
 
+alias jormungandr='workon jormungandr && PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/jormungandr:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/jormungandr/jormungandr PYTHONUNBUFFERED=1 JORMUNGANDR_CONFIG_FILE=~/dev/sources/navitia/source/jormungandr/jormungandr/dev_settings.py JORMUNGANDR_USE_SERPY=True python ~/dev/sources/navitia/source/jormungandr/jormungandr/manage.py runserver -p 5000'
+alias tyr='workon tyr && PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/tyr:~/dev/sources/navitia/source/navitiacommon PYTHONUNBUFFERED=1 TYR_CONFIG_FILE=~/dev/sources/navitia/source/tyr/tyr/dev_settings.py python ~/dev/sources/navitia/source/tyr/manage_tyr.py runserver -p 5002 ; workon jormungandr'
+alias tyrsetup='workon tyr && PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/tyr PYTHONUNBUFFERED=1 python ~/dev/sources/navitia/source/tyr/setup.py build ; workon jormungandr'
+
 alias dbUpgradeJormun='workon tyr && PYTHONPATH=../navitiacommon:. TYR_CONFIG_FILE=dev_settings.py ./manage_tyr.py db upgrade'
+
+alias eitriBenchScenari='workon eitri && cd ~/dev/sources/navitia/source/eitri && time PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/eitri:~/dev/sources/navitia/source/navitiacommon python ~/dev/sources/navitia/source/eitri/eitri.py ~/dev/run/navitia/default/data/Benchmark_Distributed_VS_New_Default/ && mv data.nav.lz4 ~/dev/run/navitia/default/bina_output/ ; mv ~/dev/run/navitia/default/bina_output/data.nav.lz4 ~/dev/run/navitia/default/data.nav.lz4 ; cd - ; workon jormungandr'
+
+
+# kirin
+alias kirin='workon kirin && PYTHONPATH=$PYTHONPATH:~/dev/sources/kirin PYTHONUNBUFFERED=1 KIRIN_CONFIG_FILE=~/dev/sources/kirin/kirin/dev_settings.py python ~/dev/sources/kirin/manage.py runserver -p 5001 ; workon jormungandr'
+alias makkirintest='workon kirin && PYTHONPATH=$PYTHONPATH:~/dev/sources/kirin py.test --doctest-modules ~/dev/sources/kirin ; workon jormungandr'
 
 
 # Tartare
 alias mongoTartareLaunch='docker rm -v tartare_temp_mongo && docker run -p 27017:27017 --name tartare_temp_mongo mongo:3.2'
-
+alias maktartaretest='workon tartare && PYTHONPATH=$PYTHONPATH:~/dev/sources/tartare py.test --doctest-modules ~/dev/sources/tartare/tests ; workon jormungandr'
+alias tartare='workon tartare && PYTHONPATH=$PYTHONPATH:~/dev/sources/tartare/tartare PYTHONUNBUFFERED=1 python ~/dev/sources/tartare/tartare/app.py flask run ; workon jormungandr'
 
 # Visual Studio Code
 alias code='workon vscode && code'
@@ -115,6 +127,8 @@ alias cp='cp -i'
 alias vi='vim'
 alias mv='mv -i'
 alias df='df -k'
+
+alias wifiRestart='sudo systemctl restart NetworkManager.service'
 
 alias updateDebian='sudo apt update && sudo apt full-upgrade && sudo apt autoremove && sudo apt autoclean && sudo update-pepperflashplugin-nonfree --install && sudo update-flashplugin-nonfree --install'
 
