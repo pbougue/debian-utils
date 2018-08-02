@@ -10,23 +10,25 @@
 
 # Navitia
 maklangfuntion() {
-	 rm -f ./maklang.log;
+	rm -f ./maklang.log;
     make "$@" 2>&1 | tee >(GREP_COLORS='mt=00;32' egrep "^(\[ *[0-9]+\%\] )+(Linking |Scanning dependenc(ies|y) |Building |Generating )?.*") \
                          >(GREP_COLORS='mt=00;32' egrep "^(Linking |Scanning dependenc(ies|y) |Building |Generating ).*") \
                          >(egrep -v "(third_party|/linenoise/|\.pb\.).*warning: " | GREP_COLORS='mt=01;35' egrep "warning: " -A 20 -B 20) \
                          >(GREP_COLORS='mt=01;31' egrep "error: " -A 10 -B 10) \
                          > ./maklang.log
 }
+
 # alias maklang=maklangfuntion
 alias maklang='make'
 # alias makpbf='make protobuf_files'
 alias makpbf='echo "protobuf_files: nothing to do"'
-alias makdockertest='workon tyr && make docker_test ; workon jormungandr'
+alias maktyrdockertest='workon tyr && make docker_test ; workon jormungandr'
+alias makdockertest='workon eitri && make run_test ; workon jormungandr'
 alias maktyrtest='workon tyr && PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/tyr py.test --doctest-modules ~/dev/sources/navitia/source/tyr/tests ; workon jormungandr'
 alias makjormuntest='workon jormungandr && JORMUNGANDR_USE_SERPY=True PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/jormungandr/jormungandr py.test --doctest-modules ~/dev/sources/navitia/source/jormungandr/jormungandr'
 alias makintegrationtest='workon jormungandr && JORMUNGANDR_USE_SERPY=True KRAKEN_BUILD_DIR=~/dev/build/navitia/releaseClang PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/jormungandr/tests py.test --doctest-modules ~/dev/sources/navitia/source/jormungandr/tests'
 
-alias maktest='workon jormungandr && make test && makdockertest'
+alias maktest='workon jormungandr && make test && maktyrdockertest'
 alias maked_only='makpbf && maklang -j6 -k ed_executables'
 alias maked='makpbf && maked_only; maklang -j6 -k kraken; maklang -j6 -k && maktest'
 alias makraken='makpbf && maklang -j6 -k kraken; maked_only; maklang -j6 -k && maktest'
@@ -38,7 +40,17 @@ alias tyrsetup='workon tyr && PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/sourc
 
 alias dbUpgradeJormun='workon tyr && PYTHONPATH=../navitiacommon:. TYR_CONFIG_FILE=dev_settings.py ./manage_tyr.py db upgrade'
 
-alias eitriBenchScenari='workon eitri && cd ~/dev/sources/navitia/source/eitri && time PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/eitri:~/dev/sources/navitia/source/navitiacommon python ~/dev/sources/navitia/source/eitri/eitri.py ~/dev/run/navitia/default/data/Benchmark_Distributed_VS_New_Default/ && mv data.nav.lz4 ~/dev/run/navitia/default/bina_output/ ; mv ~/dev/run/navitia/default/bina_output/data.nav.lz4 ~/dev/run/navitia/default/data.nav.lz4 ; cd - ; workon jormungandr'
+
+eitri () {
+    workon eitri &&
+    cd ~/dev/sources/navitia/source/eitri &&
+    time PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/eitri:~/dev/sources/navitia/source/navitiacommon python ~/dev/sources/navitia/source/eitri/eitri.py $1 &&
+    mv data.nav.lz4 $2 ;
+    cd - ;
+    workon jormungandr
+}
+alias eitriBenchScenari='eitri ~/dev/run/navitia/default/data/Benchmark_Distributed_VS_New_Default/ ~/dev/run/navitia/default/data.nav.lz4'
+#alias eitriBenchScenari='workon eitri && cd ~/dev/sources/navitia/source/eitri && time PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/eitri:~/dev/sources/navitia/source/navitiacommon python ~/dev/sources/navitia/source/eitri/eitri.py ~/dev/run/navitia/default/data/Benchmark_Distributed_VS_New_Default/ && mv data.nav.lz4 ~/dev/run/navitia/default/bina_output/ ; mv ~/dev/run/navitia/default/bina_output/data.nav.lz4 ~/dev/run/navitia/default/data.nav.lz4 ; cd - ; workon jormungandr'
 
 
 # kirin
