@@ -11,24 +11,24 @@
 # Navitia
 maklangfuntion() {
 	rm -f ./maklang.log;
-    make "$@" 2>&1 | tee >(GREP_COLORS='mt=00;32' egrep "^(\[ *[0-9]+\%\] )+(Linking |Scanning dependenc(ies|y) |Building |Generating )?.*") \
-                         >(GREP_COLORS='mt=00;32' egrep "^(Linking |Scanning dependenc(ies|y) |Building |Generating ).*") \
-                         >(egrep -v "(third_party|/linenoise/|\.pb\.).*warning: " | GREP_COLORS='mt=01;35' egrep "warning: " -A 20 -B 20) \
-                         >(GREP_COLORS='mt=01;31' egrep "error: " -A 10 -B 10) \
-                         > ./maklang.log
+    time make "$@" 2>&1 | tee >(GREP_COLORS='mt=00;32' egrep "^(\[ *[0-9]+\%\] )+(Linking |Scanning dependenc(ies|y) |Building |Generating )?.*") \
+                              >(GREP_COLORS='mt=00;32' egrep "^(Linking |Scanning dependenc(ies|y) |Building |Generating ).*") \
+                              >(egrep -v "(third_party|/linenoise/|\.pb\.).*warning: " | GREP_COLORS='mt=01;35' egrep "warning: " -A 20 -B 20) \
+                              >(GREP_COLORS='mt=01;31' egrep "error: " -A 10 -B 10) \
+                              > ./maklang.log
 }
 
 # alias maklang=maklangfuntion
-alias maklang='make'
+alias maklang='time make'
 # alias makpbf='make protobuf_files'
 alias makpbf='echo "protobuf_files: nothing to do"'
-alias maktyrdockertest='workon tyr && make docker_test ; workon jormungandr'
-alias makdockertest='workon eitri && make run_test ; workon jormungandr'
-alias maktyrtest='workon tyr && PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/tyr py.test --doctest-modules ~/dev/sources/navitia/source/tyr/tests ; workon jormungandr'
-alias makjormuntest='workon jormungandr && JORMUNGANDR_USE_SERPY=True PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/jormungandr/jormungandr py.test --doctest-modules ~/dev/sources/navitia/source/jormungandr/jormungandr'
-alias makintegrationtest='workon jormungandr && JORMUNGANDR_USE_SERPY=True KRAKEN_BUILD_DIR=~/dev/build/navitia/releaseClang PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/jormungandr/tests py.test --doctest-modules ~/dev/sources/navitia/source/jormungandr/tests'
+alias maktyrdockertest='workon tyr && time make docker_test ; workon jormungandr'
+alias makdockertest='workon eitri && time make run_test ; workon jormungandr'
+alias maktyrtest='workon tyr && time PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/tyr py.test --doctest-modules ~/dev/sources/navitia/source/tyr/tests ; workon jormungandr'
+alias makjormuntest='workon jormungandr && time JORMUNGANDR_USE_SERPY=True PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/jormungandr/jormungandr py.test --doctest-modules ~/dev/sources/navitia/source/jormungandr/jormungandr'
+alias makintegrationtest='workon jormungandr && time JORMUNGANDR_USE_SERPY=True KRAKEN_BUILD_DIR=~/dev/build/navitia/releaseClang PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/jormungandr/tests py.test --doctest-modules ~/dev/sources/navitia/source/jormungandr/tests'
 
-alias maktest='workon jormungandr && make test && maktyrdockertest'
+alias maktest='workon jormungandr && time make test && maktyrdockertest'
 alias maked_only='makpbf && maklang -j6 -k ed_executables'
 alias maked='makpbf && maked_only; maklang -j6 -k kraken; maklang -j6 -k && maktest'
 alias makraken='makpbf && maklang -j6 -k kraken; maked_only; maklang -j6 -k && maktest'
@@ -38,7 +38,7 @@ alias jormungandr='workon jormungandr && PYTHONPATH=$PYTHONPATH:~/dev/sources/na
 alias tyr='workon tyr && PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/tyr:~/dev/sources/navitia/source/navitiacommon PYTHONUNBUFFERED=1 TYR_CONFIG_FILE=~/dev/sources/navitia/source/tyr/tyr/dev_settings.py python ~/dev/sources/navitia/source/tyr/manage_tyr.py runserver -p 5002 ; workon jormungandr'
 alias tyrsetup='workon tyr && PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/tyr PYTHONUNBUFFERED=1 python ~/dev/sources/navitia/source/tyr/setup.py build ; workon jormungandr'
 
-alias dbUpgradeJormun='workon tyr && PYTHONPATH=../navitiacommon:. TYR_CONFIG_FILE=dev_settings.py ./manage_tyr.py db upgrade'
+alias dbUpgradeJormun='workon tyr && time PYTHONPATH=../navitiacommon:. TYR_CONFIG_FILE=dev_settings.py ./manage_tyr.py db upgrade'
 
 
 eitri () {
@@ -54,14 +54,14 @@ alias eitriBenchScenari='eitri ~/dev/run/navitia/default/data/Benchmark_Distribu
 
 
 # kirin
-alias kirin='workon kirin && PYTHONPATH=$PYTHONPATH:~/dev/sources/kirin PYTHONUNBUFFERED=1 KIRIN_CONFIG_FILE=~/dev/sources/kirin/kirin/dev_settings.py python ~/dev/sources/kirin/manage.py runserver -p 5001 ; workon jormungandr'
-alias makkirintest='workon kirin && PYTHONPATH=$PYTHONPATH:~/dev/sources/kirin py.test --doctest-modules ~/dev/sources/kirin ; workon jormungandr'
+alias kirin='workon kirin && PYTHONPATH=$PYTHONPATH:~/dev/sources/kirin PYTHONUNBUFFERED=1 KIRIN_CONFIG_FILE=~/dev/sources/kirin/kirin/dev_settings.py python ~/dev/sources/kirin/manage.py runserver -p 5001'
+alias makkirintest='workon kirin && time PYTHONPATH=$PYTHONPATH:~/dev/sources/kirin py.test --doctest-modules ~/dev/sources/kirin'
 
 
 # Tartare
 alias mongoTartareLaunch='docker rm -v tartare_temp_mongo && docker run -p 27017:27017 --name tartare_temp_mongo mongo:3.2'
-alias maktartaretest='workon tartare && PYTHONPATH=$PYTHONPATH:~/dev/sources/tartare py.test --doctest-modules ~/dev/sources/tartare/tests ; workon jormungandr'
-alias tartare='workon tartare && PYTHONPATH=$PYTHONPATH:~/dev/sources/tartare/tartare PYTHONUNBUFFERED=1 python ~/dev/sources/tartare/tartare/app.py flask run ; workon jormungandr'
+alias maktartaretest='workon tartare && time PYTHONPATH=$PYTHONPATH:~/dev/sources/tartare py.test --doctest-modules ~/dev/sources/tartare/tests'
+alias tartare='workon tartare && PYTHONPATH=$PYTHONPATH:~/dev/sources/tartare/tartare PYTHONUNBUFFERED=1 python ~/dev/sources/tartare/tartare/app.py flask run'
 
 # Visual Studio Code
 alias code='workon vscode && code'
@@ -110,7 +110,7 @@ source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 
 
 # Profiling
-alias doPurify='valgrind --tool=memcheck -v --log-file=memcheck.log --leak-check=full --leak-resolution=med --show-reachable=yes --error-limit=no'
+alias doPurify='time valgrind --tool=memcheck -v --log-file=memcheck.log --leak-check=full --leak-resolution=med --show-reachable=yes --error-limit=no'
 alias perfRecordProcess='sudo perf record --call-graph dwarf -p'
 alias perfRecord='sudo perf record --call-graph'
 alias perfReport='sudo perf report -n --stdio'
