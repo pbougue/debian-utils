@@ -6,5 +6,7 @@
 .idea
 **.pyc
 .cache
+.pytest_cache
 dev_settings.py
 CMakeLists.txt.user.*
+**.code-workspace
