@@ -150,4 +150,4 @@ alias printConfig='echo "To change password: launch a print task, then right cli
 
 
 # VPN paloalto
-alias vpn='sudo ~/local/bin/openconnect/openconnect --protocol=gp portail-vpn.canaltp.fr'
+alias vpn='sudo systemctl disable avahi-daemon.service ; sudo systemctl disable avahi-daemon.socket ; sleep 1s ; sudo systemctl stop avahi-daemon.socket ; sleep 1s ; sudo systemctl stop avahi-daemon.service ; sudo ~/local/bin/openconnect/openconnect --protocol=gp portail-vpn.canaltp.fr'
