@@ -144,6 +144,21 @@ alias wifiRestart='sudo systemctl restart NetworkManager.service'
 
 alias updateDebian='sudo apt update && sudo apt full-upgrade && sudo apt autoremove && sudo apt autoclean && sudo update-pepperflashplugin-nonfree --install && sudo update-flashplugin-nonfree --install'
 
+# format json (grep is optional but can help when extra output is done, like headers)
+jsonCurl () {
+    curl $@ | grep '^[[:blank:]]*{.*}[[:blank:]]*$' | jq .
+}
+
+# time request
+timeCurl () {
+    curl -w '\n< Total-Time: %{time_total}"' -s $@
+}
+
+# maximum info on the request (time in seconds, Content-Length in bytes)
+infoCurl () {
+    curl -v -w '\n< Total-Time: %{time_total}"' $@
+}
+
 
 # Printer HMT
 alias printConfig='echo "To change password: launch a print task, then right click printer \"Task queue\", then right-click task \"authentication\" (the user is CANALTP0/pbougue)" && system-config-printer'
