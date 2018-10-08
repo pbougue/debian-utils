@@ -8,6 +8,14 @@
 # fi
 
 
+# Python
+alias mkvirtualenv='pyenv virtualenv'
+alias lsvirtualenv='pyenv virtualenvs'
+alias rmvirtualenv='pyenv virtualenv-delete'
+alias workon='pyenv activate'
+alias deactivate='pyenv deactivate'
+
+
 # Navitia
 maklangfuntion() {
 	rm -f ./maklang.log;
@@ -55,7 +63,7 @@ alias eitriBenchScenari='eitri ~/dev/run/navitia/default/data/Benchmark_Distribu
 
 # kirin
 alias kirin='workon kirin && PYTHONPATH=$PYTHONPATH:~/dev/sources/kirin PYTHONUNBUFFERED=1 KIRIN_CONFIG_FILE=~/dev/sources/kirin/kirin/dev_settings.py python ~/dev/sources/kirin/manage.py runserver -p 5001'
-alias makkirintest='workon kirin && time PYTHONPATH=$PYTHONPATH:~/dev/sources/kirin py.test KIRIN_CONFIG_FILE=~/dev/sources/kirin/kirin/test_settings.py --doctest-modules ~/dev/sources/kirin'
+alias makkirintest='workon kirin && time PYTHONPATH=$PYTHONPATH:~/dev/sources/kirin KIRIN_CONFIG_FILE=~/dev/sources/kirin/kirin/test_settings.py py.test --doctest-modules ~/dev/sources/kirin'
 
 
 # Tartare
@@ -103,10 +111,6 @@ alias cargoUpdate='rustup update && cargo install rustfmt --force && cargo insta
 # Docker
 alias dockerCleanContainer='docker stop $(docker ps -q); docker rm -v $(docker ps -aq)'
 alias dockerClean='dockerCleanContainer; sudo docker-volume-cleanup; sudo docker run -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker:/var/lib/docker --rm martin/docker-cleanup-volumes; docker rmi $(docker images  -f dangling=true -q)'
-
-
-# Python
-source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 
 
 # Profiling
