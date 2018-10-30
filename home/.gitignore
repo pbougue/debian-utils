@@ -4,6 +4,7 @@
 .autotools
 .env
 .idea
+.settings
 **.pyc
 .cache
 .pytest_cache
