@@ -31,7 +31,7 @@ setopt no_share_history
 
 
 # Navitia
-export PATH="$HOME/dev/build/navitia/releaseClang/ed:$HOME/dev/build/navitia/releaseClang/kraken:$PATH"
+export PATH="$HOME/dev/build/navitia/release/ed:$HOME/dev/build/navitia/release/kraken:$PATH"
 
 
 # Github API token
@@ -94,7 +94,7 @@ export PATH="$HOME/local/bin:$PATH"
 # export RUST_SRC_PATH=${HOME}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
 # #export RLS_ROOT=$HOME/dev/source/rls
 
-# export PATH="$HOME/local/bin:$HOME/dev/build/navitia/releaseClang/ed:$HOME/dev/build/navitia/releaseClang/kraken:/usr/local/go/bin:$GOPATH:$GOPATH/bin:$HOME/local/bin/maven/apache-maven-3.5.0/bin:$HOME/.cargo/bin:$PATH"
+# export PATH="$HOME/local/bin:$HOME/dev/build/navitia/release/ed:$HOME/dev/build/navitia/release/kraken:/usr/local/go/bin:$GOPATH:$GOPATH/bin:$HOME/local/bin/maven/apache-maven-3.5.0/bin:$HOME/.cargo/bin:$PATH"
 
 # export NVM_DIR="/home/pbougue/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

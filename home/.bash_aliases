@@ -34,7 +34,7 @@ alias maktyrdockertest='workon tyr_eitri && time make docker_test ; workon jormu
 alias makdockertest='workon eitri && time make run_test ; workon jormungandr'
 alias maktyrtest='workon tyr && time make tyr_tests ; workon jormungandr'
 alias makjormuntest='workon jormungandr && time JORMUNGANDR_USE_SERPY=True PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/jormungandr/jormungandr py.test --doctest-modules ~/dev/sources/navitia/source/jormungandr/jormungandr'
-alias makintegrationtest='workon jormungandr && time JORMUNGANDR_USE_SERPY=True KRAKEN_BUILD_DIR=~/dev/build/navitia/releaseClang PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/jormungandr/tests py.test --doctest-modules ~/dev/sources/navitia/source/jormungandr/tests'
+alias makintegrationtest='workon jormungandr && time JORMUNGANDR_USE_SERPY=True KRAKEN_BUILD_DIR=~/dev/build/navitia/release PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/jormungandr/tests py.test --doctest-modules ~/dev/sources/navitia/source/jormungandr/tests'
 
 alias maktest='workon jormungandr && time make test && maktyrtest && makdockertest ; maktyrdockertest'
 alias maked_only='makpbf && maklang -j6 -k ed_executables'
