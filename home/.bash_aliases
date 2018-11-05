@@ -9,10 +9,23 @@
 
 
 # Python
-alias mkvirtualenv='pyenv virtualenv'
+alias workon='pyenv activate'
+
+mkvenvactivate() {
+	pyenv virtualenv "$@";
+    if [ "$#" -eq 1 ]; then
+        workon "$1";
+    elif [ "$#" -eq 2 ]; then
+        workon "$2";
+    else
+        echo "\n/\!\\ NO virtualenv activated /\!\\\n";
+    fi
+}
+alias mkvirtualenvsimple='pyenv virtualenv'
+alias mkvirtualenv=mkvenvactivate
+
 alias lsvirtualenv='pyenv virtualenvs'
 alias rmvirtualenv='pyenv virtualenv-delete'
-alias workon='pyenv activate'
 alias deactivate='pyenv deactivate'
 
 
