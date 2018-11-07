@@ -27,6 +27,8 @@ alias mkvirtualenv=mkvenvactivate
 alias lsvirtualenv='pyenv virtualenvs'
 alias rmvirtualenv='pyenv virtualenv-delete'
 alias deactivate='pyenv deactivate'
+# black
+alias blackpass='workon black && pre-commit run black --all'
 
 
 # Navitia
