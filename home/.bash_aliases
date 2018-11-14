@@ -46,7 +46,7 @@ alias maklang='time make'
 # alias makpbf='make protobuf_files'
 alias makpbf='echo "protobuf_files: nothing to do"'
 alias maktyrdockertest='workon tyr_eitri && time make docker_test ; workon jormungandr'
-alias makdockertest='workon eitri && time make run_test ; workon jormungandr'
+alias makdockertest='workon eitri && time VERBOSE=1 make run_test ; echo "Check ./ed/docker_tests/results_ed_integration_test.xml for results" ; workon jormungandr'
 alias maktyrtest='workon tyr && time make tyr_tests ; workon jormungandr'
 # alias maktyrtest='workon tyr && time PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/tyr py.test --doctest-modules ~/dev/sources/navitia/source/tyr/tests ; workon jormungandr'
 alias makjormuntest='workon jormungandr && time JORMUNGANDR_USE_SERPY=True PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/jormungandr/jormungandr py.test --doctest-modules ~/dev/sources/navitia/source/jormungandr/jormungandr'
@@ -63,6 +63,8 @@ alias tyr='workon tyr && PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/tyr
 alias tyrsetup='workon tyr && PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/tyr PYTHONUNBUFFERED=1 python ~/dev/sources/navitia/source/tyr/setup.py build ; workon jormungandr'
 
 alias dbUpgradeJormun='workon tyr && time PYTHONPATH=../navitiacommon:. TYR_CONFIG_FILE=dev_settings.py ./manage_tyr.py db upgrade'
+
+alias installSslNavitia='sudo apt install libssl-dev'
 
 
 eitri () {
@@ -81,6 +83,13 @@ alias eitriBenchScenari='eitri ~/dev/run/navitia/default/data/Benchmark_Distribu
 alias kirin='workon kirin && PYTHONPATH=$PYTHONPATH:~/dev/sources/kirin PYTHONUNBUFFERED=1 KIRIN_CONFIG_FILE=~/dev/sources/kirin/kirin/dev_settings.py python ~/dev/sources/kirin/manage.py runserver -p 5001'
 alias makkirintest='workon kirin && time PYTHONPATH=$PYTHONPATH:~/dev/sources/kirin KIRIN_CONFIG_FILE=~/dev/sources/kirin/kirin/test_settings.py py.test --doctest-modules ~/dev/sources/kirin'
 
+
+# mimir
+alias mimirEsDocker='docker run -d --name mimir_test -p 9200:9200 -p 9300:9300 elasticsearch:2-alpine'
+alias osm2mimirChambray='RUST_LOG=debug ./target/debug/osm2mimir --input ~/Téléchargements/chambray-lille.osm.pbf --level=8 --level=9 --import-way --import-admin --import-poi --dataset=chambray --connection-string=http://localhost:9200'
+alias bragiDebug='RUST_LOG=debug ./target/debug/bragi --connection-string=http://localhost:9200'
+
+alias installSslMimir='sudo apt install libssl1.0-dev'
 
 # Tartare
 alias mongoTartareLaunch='docker rm -v tartare_temp_mongo && docker run -p 27017:27017 --name tartare_temp_mongo mongo:3.2'
@@ -121,7 +130,9 @@ cargo() {
         command cargo "$@"
     fi
 }
-alias cargoUpdate='rustup update && cargo install rustfmt --force && cargo install rustsym --force && cargo install racer --force && cargo install --git https://github.com/RustDT/Rainicorn --tag version_1.x --force && rustup run nightly cargo install clippy --force && cd ~/dev/source/rls && git pull && rustup run nightly cargo install'
+alias cargoUpdate='rustup update'
+#alias cargoUpdate='rustup self update && rustup update && cargo install rustsym --force && cargo +nightly install racer --force && cargo install --git https://github.com/RustDT/Rainicorn --tag version_1.x --force && cargo +nightly install clippy --force && cd ~/dev/source/rls && git pull && cargo +nightly install'
+alias rustSetup='cargo install stable nightly && rustup component add rustfmt-preview clippy-preview rust-src rls-preview rust-analysis'
 
 
 # Docker
@@ -178,6 +189,9 @@ timeCurl () {
 infoCurl () {
     curl -v -w '\n< Total-Time: %{time_total}"' $@
 }
+
+# OSM
+alias josm='java -jar ~/local/bin/josm/josm-tested.jar'
 
 
 # Printer HMT
