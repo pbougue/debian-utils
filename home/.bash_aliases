@@ -106,6 +106,10 @@ alias kirin='workon kirin && PYTHONPATH=$PYTHONPATH:~/dev/sources/kirin PYTHONUN
 alias makkirintest='workon kirin && time PYTHONPATH=$PYTHONPATH:~/dev/sources/kirin KIRIN_CONFIG_FILE=~/dev/sources/kirin/kirin/test_settings.py py.test --doctest-modules ~/dev/sources/kirin'
 
 
+# artemis
+alias artemisGuichetUniqueTest='workon artemis_ng && CONFIG_FILE=dev_settings.py PYTHONPATH=$PYTHONPATH:~/dev/sources/artemis py.test artemis/tests/guichet_unique_test.py --skip_cities --skip_bina'
+
+
 # mimir
 alias mimirEsDocker='docker run -d --name mimir_test -p 9200:9200 -p 9300:9300 elasticsearch:2-alpine'
 alias osm2mimirChambray='RUST_LOG=debug ./target/debug/osm2mimir --input ~/Téléchargements/chambray-lille.osm.pbf --level=8 --level=9 --import-way --import-admin --import-poi --dataset=chambray --connection-string=http://localhost:9200'
@@ -113,10 +117,12 @@ alias bragiDebug='RUST_LOG=debug ./target/debug/bragi --connection-string=http:/
 
 alias installSslMimir='sudo apt install libssl1.0-dev'
 
+
 # Tartare
 alias mongoTartareLaunch='docker rm -v tartare_temp_mongo && docker run -p 27017:27017 --name tartare_temp_mongo mongo:3.2'
 alias maktartaretest='workon tartare && time PYTHONPATH=$PYTHONPATH:~/dev/sources/tartare py.test --doctest-modules ~/dev/sources/tartare/tests'
 alias tartare='workon tartare && PYTHONPATH=$PYTHONPATH:~/dev/sources/tartare/tartare PYTHONUNBUFFERED=1 python ~/dev/sources/tartare/tartare/app.py flask run'
+
 
 # Visual Studio Code
 alias code='workon vscode && code'
