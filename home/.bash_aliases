@@ -109,6 +109,7 @@ alias makkirintest='workon kirin && time PYTHONPATH=$PYTHONPATH:~/dev/sources/ki
 # artemis
 alias getDockerKirinDatabaseIP='docker inspect --format="{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" navitia-docker-compose_kirin_database_1'
 alias artemisGuichetUniqueTest='workon artemis_ng && CONFIG_FILE=dev_settings.py PYTHONPATH=$PYTHONPATH:~/dev/sources/artemis py.test artemis/tests/guichet_unique_test.py --skip_cities --skip_bina'
+alias artemisNoIdfm='workon artemis_ng && CONFIG_FILE=dev_settings.py PYTHONPATH=$PYTHONPATH:~/dev/sources/artemis py.test artemis/tests/ --skip_cities -k "not TestIdfM"'
 
 
 # mimir
