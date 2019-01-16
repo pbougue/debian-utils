@@ -41,6 +41,14 @@ maklangfuntion() {
                               > ./maklang.log
 }
 
+function swap()
+{
+    local TMPFILE=tmp.$$
+    mv "$1" $TMPFILE
+    mv "$2" "$1"
+    mv $TMPFILE "$2"
+}
+
 # alias maklang=maklangfuntion
 alias maklang='time make'
 # alias makpbf='make protobuf_files'
