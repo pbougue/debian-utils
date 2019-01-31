@@ -72,6 +72,8 @@ alias tyrsetup='workon tyr && PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/sourc
 
 alias dbUpgradeJormun='workon tyr && time PYTHONPATH=../navitiacommon:. TYR_CONFIG_FILE=dev_settings.py ./manage_tyr.py db upgrade'
 
+alias updateVenvNavitia='workon jormungandr && pip install -r ~/dev/sources/navitia/source/jormungandr/requirements_dev.txt -U && workon eitri && pip install -r ~/dev/sources/navitia/source/eitri/requirements.txt -U && workon tyr_eitri && pip install -r ~/dev/sources/navitia/source/eitri/requirements.txt -U && pip install -r ~/dev/sources/navitia/source/tyr/requirements_dev.txt -U && workon tyr && pip install -r ~/dev/sources/navitia/source/tyr/requirements_dev.txt -U'
+
 alias installSslNavitia='sudo apt install libssl-dev'
 
 resetinstanceed() {
