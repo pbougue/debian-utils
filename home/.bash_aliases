@@ -108,8 +108,11 @@ alias makkirintest='workon kirin && time PYTHONPATH=$PYTHONPATH:~/dev/sources/ki
 
 # artemis
 alias artemis-='workon artemis_ng && time CONFIG_FILE=dev_settings.py PYTHONPATH=$PYTHONPATH:~/dev/sources/artemis py.test'
-alias artemisGuichetUniqueTest='workon artemis_ng && time CONFIG_FILE=dev_settings.py PYTHONPATH=$PYTHONPATH:~/dev/sources/artemis py.test artemis/tests/guichet_unique_test.py --skip_cities --skip_bina'
-alias artemisNoIdfm='workon artemis_ng && time CONFIG_FILE=dev_settings.py PYTHONPATH=$PYTHONPATH:~/dev/sources/artemis py.test artemis/tests/ -k "not TestIdfM"'
+alias artemisCitiesAirport01='artemis- artemis/tests/airport01_test.py'
+alias artemisAirport01='artemis- artemis/tests/airport01_test.py --skip_cities'
+alias artemisGuichetUnique='artemis- artemis/tests/guichet_unique_test.py --skip_cities'
+alias artemisGuichetUniqueNoBina='artemis- artemis/tests/guichet_unique_test.py --skip_cities --skip_bina'
+alias artemisNoIdfm='artemis- artemis/tests/ -k "not TestIdfM"'
 
 
 # mimir
