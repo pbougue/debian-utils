@@ -106,14 +106,24 @@ alias eitriBenchScenari='eitri ~/dev/run/navitia/default/data/Benchmark_Distribu
 # kirin
 alias kirin='workon kirin && PYTHONPATH=$PYTHONPATH:~/dev/sources/kirin PYTHONUNBUFFERED=1 KIRIN_CONFIG_FILE=~/dev/sources/kirin/kirin/dev_settings.py python ~/dev/sources/kirin/manage.py runserver -p 5001'
 alias makkirintest='workon kirin && time PYTHONPATH=$PYTHONPATH:~/dev/sources/kirin KIRIN_CONFIG_FILE=~/dev/sources/kirin/kirin/test_settings.py py.test --doctest-modules ~/dev/sources/kirin'
+alias kirinDockerBuild='workon artemis_ng && cd ~/dev/sources/kirin && docker build -t kirin .'
+
+
+# navitia-docker-compose
+alias dockerPullNavitiaDevImages='docker pull navitia/tyr-worker:dev && docker pull navitia/jormungandr:dev && docker pull navitia/kraken:dev && docker pull navitia/tyr-web:dev && docker pull navitia/tyr-beat:dev && docker pull navitia/instances-configurator:dev'
+alias kirinConfiguratorDockerBuild='workon artemis_ng && cd ~/dev/sources/navitia-docker-compose/kirin/ && docker build -f Dockerfile-kirin-configurator -t kirin_configurator .'
+alias artemisComposeUp='workon artemis_ng && cd ~/dev/sources/navitia-docker-compose/ && TAG=dev docker-compose -f docker-compose.yml -f artemis/docker-artemis-instance.yml -f kirin/docker-compose_kirin.yml up'
+alias artemisComposeDown='workon artemis_ng && cd ~/dev/sources/navitia-docker-compose/ && TAG=dev docker-compose -f docker-compose.yml -f artemis/docker-artemis-instance.yml -f kirin/docker-compose_kirin.yml down --volumes'
 
 
 # artemis
 alias artemis-='workon artemis_ng && time CONFIG_FILE=dev_settings.py PYTHONPATH=$PYTHONPATH:~/dev/sources/artemis py.test'
 alias artemisCitiesAirport01='artemis- artemis/tests/airport01_test.py'
-alias artemisAirport01='artemis- artemis/tests/airport01_test.py --skip_cities'
+alias artemisAirport01='artemisCitiesAirport01 --skip_cities'
 alias artemisGuichetUnique='artemis- artemis/tests/guichet_unique_test.py --skip_cities'
-alias artemisGuichetUniqueNoBina='artemis- artemis/tests/guichet_unique_test.py --skip_cities --skip_bina'
+alias artemisGuichetUniqueNoBina='artemisGuichetUnique --skip_bina'
+alias artemisGuichetUniqueNewDefault='artemisGuichetUnique -k "TestGuichetUniqueNewDefault"'
+alias artemisGuichetUniqueNoBinaNewDefault='artemisGuichetUniqueNoBina -k "TestGuichetUniqueNewDefault"'
 alias artemisNoIdfm='artemis- artemis/tests/ -k "not TestIdfM"'
 
 
