@@ -27,8 +27,6 @@ alias mkvirtualenv=mkvenvactivate
 alias lsvirtualenv='pyenv virtualenvs'
 alias rmvirtualenv='pyenv virtualenv-delete'
 alias deactivate='pyenv deactivate'
-# black
-alias blackpass='workon black && pre-commit run black --all'
 
 
 # Navitia
@@ -102,6 +100,15 @@ eitri () {
 alias eitriBenchScenari='eitri ~/dev/run/navitia/default/data/Benchmark_Distributed_VS_New_Default/ ~/dev/run/navitia/default/data.nav.lz4'
 #alias eitriBenchScenari='workon eitri && cd ~/dev/sources/navitia/source/eitri && time PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/eitri:~/dev/sources/navitia/source/navitiacommon python ~/dev/sources/navitia/source/eitri/eitri.py ~/dev/run/navitia/default/data/Benchmark_Distributed_VS_New_Default/ && mv data.nav.lz4 ~/dev/run/navitia/default/bina_output/ ; mv ~/dev/run/navitia/default/bina_output/data.nav.lz4 ~/dev/run/navitia/default/data.nav.lz4 ; cd - ; workon jormungandr'
 
+# pre-commit
+
+# mypy
+alias mypypass='workon precommit && MYPYPATH=.:../navitiacommon mypy --ignore-missing-imports --py2'
+alias mypyJormun='pushd ~/dev/sources/navitia/source/jormungandr && mypypass jormungandr ; popd'
+
+alias mkVirtualenvPrecommit='mkvirtualenv 3.6.6 precommit && pip install -U black pre-commit pip'
+alias precommitNav='workon precommit && pre-commit run black --all && pre-commit run clang-format-6.0 --all && mypyJormun'
+
 
 # kirin
 alias kirin='workon kirin && PYTHONPATH=$PYTHONPATH:~/dev/sources/kirin PYTHONUNBUFFERED=1 KIRIN_CONFIG_FILE=~/dev/sources/kirin/kirin/dev_settings.py python ~/dev/sources/kirin/manage.py runserver -p 5001'
@@ -163,6 +170,7 @@ smgitfunction() {
 	git submodule update --recursive;
 }
 alias smgit=smgitfunction
+alias git='workon precommit; git'
 alias gitkc='git log --decorate=short --format="%Cgreen%h%Cred%d %Creset%s %Cblue[%an | %ad]" --graph --date=short --all'
 alias gitk='gitk --all'
 
