@@ -243,5 +243,9 @@ alias josm='java -jar ~/local/bin/josm/josm-tested.jar'
 alias printConfig='echo "To change password: launch a print task, then right click printer \"Task queue\", then right-click task \"authentication\" (the user is CANALTP0/pbougue)" && system-config-printer'
 
 
+# Avahi (to allow .local domains)
+alias avahiStop='sudo systemctl disable avahi-daemon.service ; sudo systemctl disable avahi-daemon.socket ; sleep 1s ; sudo systemctl stop avahi-daemon.socket ; sleep 1s ; sudo systemctl stop avahi-daemon.service'
+
+
 # VPN paloalto
-alias vpn='sudo systemctl disable avahi-daemon.service ; sudo systemctl disable avahi-daemon.socket ; sleep 1s ; sudo systemctl stop avahi-daemon.socket ; sleep 1s ; sudo systemctl stop avahi-daemon.service ; sudo ~/local/bin/openconnect/openconnect --protocol=gp portail-vpn.canaltp.fr'
+alias vpn='avahiStop ; sleep 2s ; sudo ~/local/bin/openconnect/openconnect --protocol=gp portail-vpn.canaltp.fr'
