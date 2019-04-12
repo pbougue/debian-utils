@@ -39,6 +39,11 @@ maklangfuntion() {
                               > ./maklang.log
 }
 
+function json_filter() {
+    FILTER=$1; if [ ! $FILTER ]; then FILTER="*"; fi
+    python -c "import sys;import json;import jmespath; print(json.dumps(jmespath.search('$FILTER', json.loads(sys.stdin.read()))))" | json_pp | highlight -S json -O ansi
+}
+
 function swap()
 {
     local TMPFILE=tmp.$$
