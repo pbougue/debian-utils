@@ -75,7 +75,7 @@ alias tyrsetup='workon tyr && PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/sourc
 
 alias dbUpgradeJormun='workon tyr && time PYTHONPATH=../navitiacommon:. TYR_CONFIG_FILE=dev_settings.py ./manage_tyr.py db upgrade'
 
-alias updateVenvNavitia='workon jormungandr && pip install -r ~/dev/sources/navitia/source/jormungandr/requirements_dev.txt -U && workon eitri && pip install -r ~/dev/sources/navitia/source/eitri/requirements.txt -U && workon tyr_eitri && pip install -r ~/dev/sources/navitia/source/eitri/requirements.txt -U && pip install -r ~/dev/sources/navitia/source/tyr/requirements_dev.txt -U && workon tyr && pip install -r ~/dev/sources/navitia/source/tyr/requirements_dev.txt -U'
+alias updateVenvNavitia='workon jormungandr && pip install -r ~/dev/sources/navitia/source/jormungandr/requirements_dev.txt -U && pip install -U pip && workon eitri && pip install -r ~/dev/sources/navitia/source/eitri/requirements.txt -U && pip install -U pip && workon tyr_eitri && pip install -r ~/dev/sources/navitia/source/eitri/requirements.txt -U && pip install -U pip && pip install -r ~/dev/sources/navitia/source/tyr/requirements_dev.txt -U && workon tyr && pip install -r ~/dev/sources/navitia/source/tyr/requirements_dev.txt -U && pip install -U pip && workon cities && pip install -r ~/dev/sources/navitia/source/cities/requirements.txt -U && pip install -U pip && workon monitor && pip install -r ~/dev/sources/navitia/source/monitor/requirements.txt -U && pip install -U pip && workon black && pip install -r ~/dev/sources/navitia/source/jormungandr/requirements_dev.txt -U && pip install -U pip'
 
 alias installSslNavitia='sudo apt install libssl-dev'
 
