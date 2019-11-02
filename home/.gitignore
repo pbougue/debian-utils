@@ -11,3 +11,4 @@
 dev_settings.py
 CMakeLists.txt.user.*
 **.code-workspace
+.mypy_cache
