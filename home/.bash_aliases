@@ -112,7 +112,7 @@ alias eitriBenchScenari='eitri ~/dev/run/navitia/default/data/Benchmark_Distribu
 alias mypypass='workon precommit && MYPYPATH=.:../navitiacommon mypy --ignore-missing-imports --py2'
 alias mypyJormun='pushd ~/dev/sources/navitia/source/jormungandr && mypypass jormungandr ; popd'
 
-alias mkVirtualenvPrecommit='mkvirtualenv 3.6.6 precommit && pip install -U black pre-commit pip'
+alias mkVirtualenvPrecommit='pyenv virtualenv -p python3.6 3.6.6 precommit && workon precommit && pip install -U black pre-commit pip -r ~/dev/sources/navitia/requirements_precommit.txt'
 alias precommitNav='workon precommit && pre-commit run black --all && pre-commit run clang-format-6.0 --all && mypyJormun'
 
 
