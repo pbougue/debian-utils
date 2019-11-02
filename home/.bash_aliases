@@ -59,11 +59,12 @@ alias makpbf='echo "protobuf_files: nothing to do"'
 alias maktyrdockertest='workon tyr_eitri && time make docker_test ; workon jormungandr'
 alias makdockertest='workon eitri && time _VERBOSE=1 make run_test ; echo "Check ./ed/docker_tests/results_ed_integration_test.xml for results" ; workon jormungandr'
 alias maktyrtest='workon tyr && time make tyr_tests ; workon jormungandr'
+alias makchaostest='workon chaos_tests && time make chaos_tests ; workon jormungandr'
 # alias maktyrtest='workon tyr && time PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/tyr py.test --doctest-modules ~/dev/sources/navitia/source/tyr/tests ; workon jormungandr'
 alias makjormuntest='workon jormungandr && time JORMUNGANDR_USE_SERPY=True PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/jormungandr/jormungandr py.test --doctest-modules ~/dev/sources/navitia/source/jormungandr/jormungandr'
 alias makintegrationtest='workon jormungandr && time JORMUNGANDR_USE_SERPY=True KRAKEN_BUILD_DIR=~/dev/build/navitia/release PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/jormungandr/tests py.test --doctest-modules ~/dev/sources/navitia/source/jormungandr/tests'
 
-alias maktest='workon jormungandr && time make test && maktyrtest && makdockertest' # ; maktyrdockertest'
+alias maktest='workon jormungandr && time make test && maktyrtest && makdockertest && makchaostest' # ; maktyrdockertest'
 alias maked_only='makpbf && maklang -j6 -k ed_executables'
 alias maked='makpbf && maked_only; maklang -j6 -k kraken; maklang -j6 -k && maktest'
 alias makraken='makpbf && maklang -j6 -k kraken; maked_only; maklang -j6 -k && maktest'
@@ -75,7 +76,7 @@ alias tyrsetup='workon tyr && PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/sourc
 
 alias dbUpgradeJormun='workon tyr && time PYTHONPATH=../navitiacommon:. TYR_CONFIG_FILE=dev_settings.py ./manage_tyr.py db upgrade'
 
-alias updateVenvNavitia='workon jormungandr && pip install -r ~/dev/sources/navitia/source/jormungandr/requirements_dev.txt -U && pip install -U pip && workon eitri && pip install -r ~/dev/sources/navitia/source/eitri/requirements.txt -U && pip install -U pip && workon tyr_eitri && pip install -r ~/dev/sources/navitia/source/eitri/requirements.txt -U && pip install -U pip && pip install -r ~/dev/sources/navitia/source/tyr/requirements_dev.txt -U && workon tyr && pip install -r ~/dev/sources/navitia/source/tyr/requirements_dev.txt -U && pip install -U pip && workon cities && pip install -r ~/dev/sources/navitia/source/cities/requirements.txt -U && pip install -U pip && workon monitor && pip install -r ~/dev/sources/navitia/source/monitor/requirements.txt -U && pip install -U pip && workon black && pip install -r ~/dev/sources/navitia/source/jormungandr/requirements_dev.txt -U && pip install -U pip'
+alias updateVenvNavitia='workon jormungandr && pip install -r ~/dev/sources/navitia/source/jormungandr/requirements_dev.txt -U && pip install -U pip && workon eitri && pip install -r ~/dev/sources/navitia/source/eitri/requirements.txt -U && pip install -U pip && workon tyr_eitri && pip install -r ~/dev/sources/navitia/source/eitri/requirements.txt -U && pip install -U pip && pip install -r ~/dev/sources/navitia/source/tyr/requirements_dev.txt -U && workon tyr && pip install -r ~/dev/sources/navitia/source/tyr/requirements_dev.txt -U && pip install -U pip && workon chaos_tests && pip install -r ~/dev/sources/navitia/source/tyr/requirements_dev.txt -U && pip install -U pip && workon cities && pip install -r ~/dev/sources/navitia/source/cities/requirements.txt -U && pip install -U pip && workon monitor && pip install -r ~/dev/sources/navitia/source/monitor/requirements.txt -U && pip install -U pip && workon black && pip install -r ~/dev/sources/navitia/source/jormungandr/requirements_dev.txt -U && pip install -U pip'
 
 alias installSslNavitia='sudo apt install libssl-dev'
 
