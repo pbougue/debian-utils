@@ -191,7 +191,7 @@ cargo() {
 }
 alias cargoUpdate='rustup update'
 #alias cargoUpdate='rustup self update && rustup update && cargo install rustsym --force && cargo +nightly install racer --force && cargo install --git https://github.com/RustDT/Rainicorn --tag version_1.x --force && cargo +nightly install clippy --force && cd ~/dev/source/rls && git pull && cargo +nightly install'
-alias rustSetup='cargo install stable nightly && rustup component add rustfmt-preview clippy-preview rust-src rls-preview rust-analysis'
+alias rustSetup='cargo install stable nightly && rustup component add rustfmt-preview clippy-preview rust-src rls-preview rust-analysis git-absorb'
 
 
 # Docker
