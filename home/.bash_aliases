@@ -230,7 +230,9 @@ alias vi='vim'
 alias mv='mv -i'
 alias df='df -k'
 
-alias wifiRestart='sudo systemctl restart NetworkManager.service'
+# https://askubuntu.com/questions/271387/how-to-restart-wifi-connection
+alias wifiRestart='nmcli radio wifi off && sleep 5 && nmcli radio wifi on'
+alias networkRestart='sudo systemctl restart NetworkManager.service'
 
 alias updateDebian='sudo apt update && sudo apt full-upgrade && sudo apt autoremove && sudo apt autoclean && sudo update-pepperflashplugin-nonfree --install && sudo update-flashplugin-nonfree --install'
 
