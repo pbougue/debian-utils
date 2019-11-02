@@ -98,7 +98,7 @@ alias resetEdDefault='resetinstanceed default'
 eitri () {
     workon eitri &&
     cd ~/dev/sources/navitia/source/eitri &&
-    time PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/eitri:~/dev/sources/navitia/source/navitiacommon python ~/dev/sources/navitia/source/eitri/eitri.py $1 &&
+    time PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/eitri:~/dev/sources/navitia/source/navitiacommon python ~/dev/sources/navitia/source/eitri/eitri.py -e ~/dev/build/navitia/release/ed -d $1 &&
     mv data.nav.lz4 $2 ;
     cd - ;
     workon jormungandr
