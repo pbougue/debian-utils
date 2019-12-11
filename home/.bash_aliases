@@ -64,7 +64,7 @@ alias makchaostest='workon chaos_tests && time make chaos_tests ; workon jormung
 alias makjormuntest='workon jormungandr && time JORMUNGANDR_USE_SERPY=True PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/jormungandr/jormungandr py.test --doctest-modules ~/dev/sources/navitia/source/jormungandr/jormungandr'
 alias makintegrationtest='workon jormungandr && time JORMUNGANDR_USE_SERPY=True KRAKEN_BUILD_DIR=~/dev/build/navitia/release PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/jormungandr/tests py.test --doctest-modules ~/dev/sources/navitia/source/jormungandr/tests'
 
-alias maktest='workon jormungandr && time make test && maktyrtest && makdockertest && makchaostest' # ; maktyrdockertest'
+alias maktest='workon jormungandr && time make test ; maktyrtest ; makdockertest ; makchaostest' # ; maktyrdockertest'
 alias maked_only='makpbf && maklang -j6 -k ed_executables'
 alias maked='makpbf && maked_only; maklang -j6 -k kraken; maklang -j6 -k && maktest'
 alias makraken='makpbf && maklang -j6 -k kraken; maked_only; maklang -j6 -k && maktest'
