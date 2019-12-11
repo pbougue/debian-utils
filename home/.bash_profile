@@ -59,12 +59,13 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 
 # pyenv
-export PATH="$HOME/.pyenv/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
-# pyenv virtualenvwrapper_lazy
-export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+# export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+pyenv virtualenvwrapper_lazy
 
 
 # nvm

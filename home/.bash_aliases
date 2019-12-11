@@ -9,24 +9,24 @@
 
 
 # Python
-alias workon='pyenv activate'
+# alias workon='pyenv activate'
 
-mkvenvactivate() {
-	pyenv virtualenv "$@";
-    if [ "$#" -eq 1 ]; then
-        workon "$1";
-    elif [ "$#" -eq 2 ]; then
-        workon "$2";
-    else
-        echo "\n/\!\\ NO virtualenv activated /\!\\\n";
-    fi
-}
-alias mkvirtualenvsimple='pyenv virtualenv'
-alias mkvirtualenv=mkvenvactivate
+# mkvenvactivate() {
+# 	pyenv virtualenv "$@";
+#     if [ "$#" -eq 1 ]; then
+#         workon "$1";
+#     elif [ "$#" -eq 2 ]; then
+#         workon "$2";
+#     else
+#         echo "\n/\!\\ NO virtualenv activated /\!\\\n";
+#     fi
+# }
+# alias mkvirtualenvsimple='pyenv virtualenv'
+# alias mkvirtualenv=mkvenvactivate
 
-alias lsvirtualenv='pyenv virtualenvs'
-alias rmvirtualenv='pyenv virtualenv-delete'
-alias deactivate='pyenv deactivate'
+# alias lsvirtualenv='pyenv virtualenvs'
+# alias rmvirtualenv='pyenv virtualenv-delete'
+# alias deactivate='pyenv deactivate'
 
 
 # Navitia
@@ -76,7 +76,7 @@ alias tyrsetup='workon tyr && PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/sourc
 
 alias dbUpgradeJormun='workon tyr && time PYTHONPATH=../navitiacommon:. TYR_CONFIG_FILE=dev_settings.py ./manage_tyr.py db upgrade'
 
-alias updateVenvNavitia='workon jormungandr && pip install -r ~/dev/sources/navitia/source/jormungandr/requirements_dev.txt -U && pip install -U pip && workon eitri && pip install -r ~/dev/sources/navitia/source/eitri/requirements.txt -U && pip install -U pip && workon tyr_eitri && pip install -r ~/dev/sources/navitia/source/eitri/requirements.txt -U && pip install -U pip && pip install -r ~/dev/sources/navitia/source/tyr/requirements_dev.txt -U && workon tyr && pip install -r ~/dev/sources/navitia/source/tyr/requirements_dev.txt -U && pip install -U pip && workon chaos_tests && pip install -r ~/dev/sources/navitia/source/tyr/requirements_dev.txt -U && pip install -U pip && workon cities && pip install -r ~/dev/sources/navitia/source/cities/requirements.txt -U && pip install -U pip && workon monitor && pip install -r ~/dev/sources/navitia/source/monitor/requirements.txt -U && pip install -U pip && workon black && pip install -r ~/dev/sources/navitia/source/jormungandr/requirements_dev.txt -U && pip install -U pip'
+alias updateVenvNavitia='workon jormungandr && pip install -r ~/dev/sources/navitia/source/jormungandr/requirements_dev.txt -U && pip install -U pip && workon eitri && pip install -r ~/dev/sources/navitia/source/eitri/requirements.txt -U && pip install -U pip && workon tyr_eitri && pip install -r ~/dev/sources/navitia/source/eitri/requirements.txt -U && pip install -U pip && pip install -r ~/dev/sources/navitia/source/tyr/requirements_dev.txt -U && workon tyr && pip install -r ~/dev/sources/navitia/source/tyr/requirements_dev.txt -U && pip install -U pip && workon chaos_tests && pip install -r ~/dev/sources/navitia/source/tyr/requirements_dev.txt -U && pip install -U pip && workon cities && pip install -r ~/dev/sources/navitia/source/cities/requirements.txt -U && pip install -U pip && workon monitor && pip install -r ~/dev/sources/navitia/source/monitor/requirements.txt -U && pip install -U pip && workon navitia-precommit && pip install -r ~/dev/sources/navitia/requirements_pre-commit.txt -U && pip install -U pip'
 
 alias installSslNavitia='sudo apt install libssl-dev'
 
@@ -109,11 +109,11 @@ alias eitriBenchScenari='eitri ~/dev/run/navitia/default/data/Benchmark_Distribu
 # pre-commit
 
 # mypy
-alias mypypass='workon precommit && MYPYPATH=.:../navitiacommon mypy --ignore-missing-imports --py2'
+alias mypypass='workon navitia-precommit && MYPYPATH=.:../navitiacommon mypy --ignore-missing-imports --py2'
 alias mypyJormun='pushd ~/dev/sources/navitia/source/jormungandr && mypypass jormungandr ; popd'
 
-alias mkVirtualenvPrecommit='pyenv virtualenv -p python3.6 3.6.6 precommit && workon precommit && pip install -U black pre-commit pip -r ~/dev/sources/navitia/requirements_precommit.txt'
-alias precommitNav='workon precommit && pre-commit run black --all && pre-commit run clang-format-6.0 --all && mypyJormun'
+alias mkVirtualenvPrecommit='mkvirtualenv -p python3.7 navitia-precommit && pip install -r ~/dev/sources/navitia/requirements_precommit.txt -U'
+alias precommitNav='workon navitia-precommit && pre-commit run --all && mypyJormun'
 
 
 # kirin
@@ -176,7 +176,7 @@ smgitfunction() {
 	git submodule update --recursive;
 }
 alias smgit=smgitfunction
-alias git='workon precommit; git'
+# alias git='workon precommit; git'
 alias gitkc='git log --decorate=short --format="%Cgreen%h%Cred%d %Creset%s %Cblue[%an | %ad]" --graph --date=short --all'
 alias gitk='gitk --all'
 
