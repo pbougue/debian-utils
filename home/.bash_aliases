@@ -182,16 +182,16 @@ alias gitk='gitk --all'
 
 
 # Rust
-cargo() {
-    if [[ $@ == "clippy" ]]; then
-        command rustup run nightly cargo clippy #--no-default-features --features nightly
-    else
-        command cargo "$@"
-    fi
-}
-alias cargoUpdate='rustup update'
-#alias cargoUpdate='rustup self update && rustup update && cargo install rustsym --force && cargo +nightly install racer --force && cargo install --git https://github.com/RustDT/Rainicorn --tag version_1.x --force && cargo +nightly install clippy --force && cd ~/dev/source/rls && git pull && cargo +nightly install'
-alias rustSetup='cargo install stable nightly && rustup component add rustfmt-preview clippy-preview rust-src rls-preview rust-analysis git-absorb bat'
+# cargo() {
+#     if [[ $@ == "clippy" ]]; then
+#         command rustup run nightly cargo clippy #--no-default-features --features nightly
+#     else
+#         command cargo "$@"
+#     fi
+# }
+# alias cargoUpdate='rustup update'
+#outdated alias cargoUpdate='rustup self update && rustup update && cargo install rustsym --force && cargo install sccache --force && cargo +nightly install racer --force && cargo install --git https://github.com/RustDT/Rainicorn --tag version_1.x --force && cargo +nightly install clippy --force && cd ~/dev/source/rls && git pull && cargo +nightly install'
+alias rustSetup='cargo install stable nightly && rustup component add rustfmt-preview clippy-preview rust-src rls-preview rust-analysis git-absorb bat sccache'
 
 
 # Docker
