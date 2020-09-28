@@ -66,7 +66,7 @@ alias gitk='gitk --all'
 alias updateDebian='sudo apt-get update && sudo apt-get dist-upgrade && sudo apt-get autoremove && sudo apt-get autoclean && sudo update-flashplugin-nonfree --install && sudo update-pepperflashplugin-nonfree --install'
 ulimit -c unlimited
 
-export WORKON_HOME="/home/pbougue/.venv"
+export WORKON_HOME="~/.venv"
 
 export PATH="$HOME/local/bin:$HOME/dev/build/navitia/releaseClang/ed:$HOME/dev/build/navitia/releaseClang/kraken:$PATH"
 

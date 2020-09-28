@@ -39,7 +39,7 @@ export HOMEBREW_GITHUB_API_TOKEN=0b4eb022243c3e54bd011a41a074cd9abf77a55d
 
 
 # Python
-export WORKON_HOME="/home/pbougue/.venv"
+export WORKON_HOME="~/.venv"
 
 
 #Golang
@@ -90,7 +90,7 @@ export BAT_THEME="Monokai Extended"
 # -------------------------------------
 # Archive from 20180701 (just in case):
 
-# export WORKON_HOME="/home/pbougue/.venv"
+# export WORKON_HOME="~/.venv"
 
 # # export GOPATH=$HOME/gopath:$HOME/dev/go
 # export GOPATH=$HOME/dev/go
@@ -99,5 +99,5 @@ export BAT_THEME="Monokai Extended"
 
 # export PATH="$HOME/local/bin:$HOME/dev/build/navitia/release/ed:$HOME/dev/build/navitia/release/kraken:/usr/local/go/bin:$GOPATH:$GOPATH/bin:$HOME/local/bin/maven/apache-maven-3.5.0/bin:$HOME/.cargo/bin:$PATH"
 
-# export NVM_DIR="/home/pbougue/.nvm"
+# export NVM_DIR="~/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
