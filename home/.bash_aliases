@@ -223,6 +223,7 @@ alias gr-help='grex'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+alias jgrep='jsonGrep'
 alias ls='exa'
 alias ll='exa -alFh'
 # alias ll='ls -alFh'
@@ -247,6 +248,10 @@ alias networkRestart='sudo systemctl restart NetworkManager.service'
 alias bluetoothStart='/etc/init.d/bluetooth start'
 
 alias updateDebian='sudo apt update && sudo apt full-upgrade && sudo apt autoremove && sudo apt autoclean && sudo update-pepperflashplugin-nonfree --install && sudo update-flashplugin-nonfree --install'
+
+jsonGrep () {
+    gron $2 | grep $1 | gron --ungron
+}
 
 # format json (grep is optional but can help when extra output is done, like headers)
 jsonCurl () {

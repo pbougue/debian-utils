@@ -3,8 +3,9 @@
 	email = pierre-etienne.bougue@canaltp.fr
 
 [core]
- 	excludesfile = ~/.gitignore 
-	editor = vi
+    excludesfile = ~/.gitignore
+    editor = vi
+    pager = delta
 
 [color]
 	diff = auto
@@ -39,3 +40,15 @@
 	fontdiff = -family \"DejaVu Sans Mono\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
 [submodule]
 	recurse = true
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    features = side-by-side line-numbers decorations
+    whitespace-error-style = 22 reverse
+
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none

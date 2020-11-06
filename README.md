@@ -15,10 +15,13 @@ Various linux/debian/ubuntu confs & scripts
 * rustup
 * code
 * teams
-* `cargo install bat exa fd-find ripgrep grex dust starship git-absorb hyperfine`
+* `cargo install bat exa fd-find ripgrep grex dust starship git-absorb hyperfine git-delta bandwhich xsv`
 * add git and docker shortcuts/integrations for zsh?
 * define konsole profile to be "default"
 * pyenv, pyenv virtualenvwrapper, pyenv install 3.8.6, pyenv global 3.8.6
+* gron for `jsongrep` : https://github.com/tomnomnom/gron#installation
+* https://github.com/pkolaczk/fclones to spot file cloned
+* https://github.com/wfxr/csview to read csv files
 
 ## gnome extensions
 
