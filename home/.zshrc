@@ -2,6 +2,8 @@
 # Executes commands at the start of an interactive session.
 #
 
+setopt no_share_history
+
 if [ -f ~/.bash_profile ]; then
     . ~/.bash_profile
 fi
