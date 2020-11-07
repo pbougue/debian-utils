@@ -33,7 +33,7 @@ bindkey "^E" end-of-line
 bindkey "^F" forward-char
 bindkey "^G" send-break
 bindkey "^H" backward-delete-char
-bindkey "^I" expand-or-complete-with-indicator
+#bindkey "^I" expand-or-complete-with-indicator
 bindkey "^J" accept-line
 bindkey "^K" kill-line
 bindkey "^L" clear-screen
