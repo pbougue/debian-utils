@@ -22,6 +22,7 @@ Various linux/debian/ubuntu confs & scripts
 * gron for `jsongrep` : https://github.com/tomnomnom/gron#installation
 * https://github.com/pkolaczk/fclones to spot file cloned
 * https://github.com/wfxr/csview to read csv files
+* https://github.com/pcarrier/gauth to manage double factor authentication (or https://github.com/martinraynov/gauth)
 
 ## gnome extensions
 
