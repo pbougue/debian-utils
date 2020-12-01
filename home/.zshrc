@@ -4,6 +4,8 @@
 
 setopt no_share_history
 
+setxkbmap fr
+
 if [ -f ~/.bash_profile ]; then
     . ~/.bash_profile
 fi
