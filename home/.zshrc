@@ -21,7 +21,7 @@ autoload -Uz compinit && compinit
 source ~/.zsh/completion.zsh  # after cd ~/.zsh && wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/lib/completion.zsh
 source ~/.zsh/history.zsh  # after cd ~/.zsh && wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/lib/history.zsh
 
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh  # after git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsl/zsh-autosuggestions
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh  # after git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  # after git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
 
 bindkey "^[[1;5D" backward-word
