@@ -241,7 +241,6 @@ alias find='fd'
 alias du='dust'  # or 'ncdu'
 alias md='mkdir -p'
 alias rd='rmdir'
-alias auth='watch -n1 gauth'  # manage double factor authentication
 
 # https://askubuntu.com/questions/271387/how-to-restart-wifi-connection
 alias wifiRestart='nmcli radio wifi off && sleep 5 && nmcli radio wifi on'
