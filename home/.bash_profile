@@ -81,7 +81,7 @@ export PATH="$HOME/local/bin/maven/apache-maven-3.5.0/bin:$PATH"
 
 # Common
 ulimit -c unlimited
-export PATH="$HOME/local/bin:$PATH"
+export PATH="$HOME/local/bin:/snap/bin:$PATH"
 
 export BAT_THEME="Monokai Extended"
 

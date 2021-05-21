@@ -190,9 +190,9 @@ alias gitk='gitk --all'
 #     fi
 # }
 # alias cargoUpdate='rustup update'
-#outdated alias cargoUpdate='rustup self update && rustup update && cargo install rustsym --force && cargo install sccache --force && cargo +nightly install racer --force && cargo install --git https://github.com/RustDT/Rainicorn --tag version_1.x --force && cargo +nightly install clippy --force && cd ~/dev/source/rls && git pull && cargo +nightly install'
-alias rustSetup='cargo install stable nightly && rustup component add rustfmt-preview clippy-preview rust-src rls-preview rust-analysis git-absorb bat sccache'
-
+alias rustSetup='rustup toolchain install stable nightly && rustup component add rustfmt clippy rust-src rls rust-analysis rust-docs'
+alias cargoInstalls='unset RUSTC_WRAPPER && cargo install sccache && export RUSTC_WRAPPER=sccache && cargo install bat exa fd-find ripgrep grex du-dust starship git-absorb hyperfine git-delta bandwhich xsv git-absorb cargo-audit cargo-cache cargo-edit cargo-tomlfmt cargo-udeps cargo-update cargo-valgrind csview simple-http-server wasm-pack'
+alias rustUpdate='rustup update && cargoInstalls'
 
 # Docker
 alias dockerCleanContainer='docker stop $(docker ps -q); docker rm -v $(docker ps -aq)'
@@ -237,7 +237,6 @@ alias mv='mv -i'
 alias df='df -k'
 alias cat='bat'
 alias timeBench='hyperfine'
-alias find='fd'
 alias du='dust'  # or 'ncdu'
 alias md='mkdir -p'
 alias rd='rmdir'
@@ -281,7 +280,7 @@ alias avahiStop='sudo systemctl disable avahi-daemon.service ; sudo systemctl di
 
 
 # VPN paloalto
-alias vpn='avahiStop ; sleep 2s ; sudo ~/local/bin/openconnect/openconnect --protocol=gp portail-vpn.canaltp.fr'
+alias vpn='avahiStop ; sleep 2s ; sudo ~/local/bin/openconnect/openconnect --protocol=gp portail-vpn.canaltp.fr --servercert pin-sha256:7fGzNilYrnKKgCVSk87uK0Uz2ATa36svNMy86gBSVXg='
 
 
 # HTTP mocks and help
