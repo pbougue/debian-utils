@@ -280,8 +280,8 @@ alias avahiStop='sudo systemctl disable avahi-daemon.service ; sudo systemctl di
 
 
 # VPN paloalto
-alias vpn='avahiStop ; sleep 2s ; sudo ~/local/bin/openconnect/openconnect --protocol=gp portail-vpn.canaltp.fr --servercert pin-sha256:7fGzNilYrnKKgCVSk87uK0Uz2ATa36svNMy86gBSVXg='
-
+alias vpn='avahiStop ; sleep 2s ; globalprotect launch-ui'
+alias vpnOpenconnect='avahiStop ; sleep 2s ; sudo ~/local/bin/openconnect/openconnect --protocol=gp portail-vpn.canaltp.fr --servercert pin-sha256:7fGzNilYrnKKgCVSk87uK0Uz2ATa36svNMy86gBSVXg='
 
 # HTTP mocks and help
 alias httpMocks='echo "You can use :\n    https://www.mocky.io/\n    https://github.com/TheWaWaR/simple-http-server\n    python -m SimpleHTTPServer\n    http POST url @/path/to/file"'
