@@ -267,6 +267,8 @@ infoCurl () {
     curl -v -w '\n< Total-Time: %{time_total}"' $@
 }
 
+alias bandwidthCurl='curl -4 -o /dev/null http://bouygues.testdebit.info/1G.iso'
+
 # OSM
 alias josm='java -jar ~/local/bin/josm/josm-tested.jar'
 
