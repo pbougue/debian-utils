@@ -120,6 +120,7 @@ alias precommitNav='workon navitia-precommit && pre-commit run --all && mypyJorm
 alias kirin='workon kirin && PYTHONPATH=$PYTHONPATH:~/dev/sources/kirin PYTHONUNBUFFERED=1 KIRIN_CONFIG_FILE=~/dev/sources/kirin/kirin/dev_settings.py python ~/dev/sources/kirin/manage.py runserver -p 54746'
 alias makkirintest='workon kirin && ./setup.py build_pbf && time PYTHONPATH=$PYTHONPATH:~/dev/sources/kirin KIRIN_CONFIG_FILE=~/dev/sources/kirin/kirin/test_settings.py py.test --doctest-modules ~/dev/sources/kirin'
 alias kirinDockerBuild='workon artemis_ng && cd ~/dev/sources/kirin && docker build -t kirin .'
+alias precommitKirin='workon precommit && cd ~/dev/source/kirin && pre-commit run --all'
 
 
 # navitia-docker-compose
