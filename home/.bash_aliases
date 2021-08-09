@@ -107,6 +107,7 @@ alias eitriBenchScenari='eitri ~/dev/run/navitia/default/data/Benchmark_Distribu
 #alias eitriBenchScenari='workon eitri && cd ~/dev/sources/navitia/source/eitri && time PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/eitri:~/dev/sources/navitia/source/navitiacommon python ~/dev/sources/navitia/source/eitri/eitri.py ~/dev/run/navitia/default/data/Benchmark_Distributed_VS_New_Default/ && mv data.nav.lz4 ~/dev/run/navitia/default/bina_output/ ; mv ~/dev/run/navitia/default/bina_output/data.nav.lz4 ~/dev/run/navitia/default/data.nav.lz4 ; cd - ; workon jormungandr'
 
 # pre-commit
+alias precommitClean='pre-commit clean'
 
 # mypy
 alias mypypass='workon navitia-precommit && MYPYPATH=.:../navitiacommon mypy --ignore-missing-imports --py2'
