@@ -289,3 +289,9 @@ alias vpnOpenconnect='avahiStop ; sleep 2s ; sudo ~/local/bin/openconnect/openco
 
 # HTTP mocks and help
 alias httpMocks='echo "You can use :\n    https://www.mocky.io/\n    https://github.com/TheWaWaR/simple-http-server\n    python -m SimpleHTTPServer\n    http POST url @/path/to/file"'
+
+# Diff and rsync
+alias manRsyncDiff='echo "Show diffs based on checksum (do not forget final `/` after <LEFT>/) :\n    deleting=file missing in LEFT, +++=file missing in RIGHT, others=file exists but different\n    rsync -avnci --delete --no-group --no-owner --no-perms --no-times <LEFT>/ <RIGHT>"'
+alias rsyncDiff='rsync -avnci --delete --no-group --no-owner --no-perms --no-times'
+alias manRsyncFuzzyDiff='echo "Show fuzzy diffs based on time and size (do not forget final `/` after <LEFT>/) :\n    deleting=file missing in LEFT, +++=file missing in RIGHT, others=file exists but different\n    rsync -avni --delete --no-group --no-owner --no-perms -@ 1 <LEFT>/ <RIGHT>"'
+alias rsyncFuzzyDiff='rsync -avni --delete --no-group --no-owner --no-perms -@ 1'
