@@ -261,12 +261,12 @@ jsonCurl () {
 
 # time request
 timeCurl () {
-    curl -w '\n< Total-Time: %{time_total}"' -s $@
+    curl -w '\n< Total-Time: %{time_total}\n"' -s $@
 }
 
 # maximum info on the request (time in seconds, Content-Length in bytes)
 infoCurl () {
-    curl -v -w '\n< Total-Time: %{time_total}"' $@
+    curl -v -w '\n< Total-Time: %{time_total}\n"' $@
 }
 
 alias bandwidthCurl='curl -4 -o /dev/null http://bouygues.testdebit.info/1G.iso'
