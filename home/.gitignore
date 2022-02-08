@@ -14,3 +14,4 @@ CMakeLists.txt.user.*
 **.code-workspace
 .mypy_cache
 **massif.out.*
+load_test_scripts/dev_load_settings.py
