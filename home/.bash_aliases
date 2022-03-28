@@ -247,6 +247,7 @@ alias rd='rmdir'
 alias wifiRestart='nmcli radio wifi off && sleep 5 && nmcli radio wifi on'
 alias networkRestart='sudo systemctl restart NetworkManager.service'
 alias bluetoothStart='/etc/init.d/bluetooth start'
+alias bluetoothStop='/etc/init.d/bluetooth stop'
 
 alias updateDebian='sudo apt update && sudo apt full-upgrade && sudo apt autoremove && sudo apt autoclean && sudo update-pepperflashplugin-nonfree --install && sudo update-flashplugin-nonfree --install'
 
@@ -295,3 +296,6 @@ alias manRsyncDiff='echo "Show diffs based on checksum (do not forget final `/` 
 alias rsyncDiff='rsync -avnci --delete --no-group --no-owner --no-perms --no-times'
 alias manRsyncFuzzyDiff='echo "Show fuzzy diffs based on time and size (do not forget final `/` after <LEFT>/) :\n    deleting=file missing in LEFT, +++=file missing in RIGHT, others=file exists but different\n    rsync -avni --delete --no-group --no-owner --no-perms -@ 1 <LEFT>/ <RIGHT>"'
 alias rsyncFuzzyDiff='rsync -avni --delete --no-group --no-owner --no-perms -@ 1'
+
+# game
+alias dualshock='workon ds4 && ds4drv --hidraw'
