@@ -249,7 +249,7 @@ alias networkRestart='sudo systemctl restart NetworkManager.service'
 alias bluetoothStart='/etc/init.d/bluetooth start'
 alias bluetoothStop='/etc/init.d/bluetooth stop'
 
-alias updateDebian='sudo apt update && sudo apt full-upgrade && sudo apt autoremove && sudo apt autoclean && sudo update-pepperflashplugin-nonfree --install && sudo update-flashplugin-nonfree --install'
+alias updateDebian='sudo apt update && sudo apt full-upgrade && sudo apt autoremove && sudo apt autoclean && sudo snap refresh && sudo update-pepperflashplugin-nonfree --install && sudo update-flashplugin-nonfree --install'
 
 jsonGrep () {
     gron $2 | grep $1 | gron --ungron
