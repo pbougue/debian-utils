@@ -14,6 +14,7 @@ Various linux/debian/ubuntu confs & scripts
 * rustup
 * vscode
 * add git and docker shortcuts/integrations for zsh?
+* Remove autostart ssh-agent to manage keys
 * define konsole profile to be "default" (using 'which zsh')
 * pyenv, pyenv virtualenvwrapper, pyenv install 3.8.6, pyenv global 3.8.6
 * gron for `jsongrep` : https://github.com/tomnomnom/gron#installation
