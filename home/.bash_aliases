@@ -192,7 +192,7 @@ alias gitk='gitk --all'
 #     fi
 # }
 # alias cargoUpdate='rustup update'
-alias rustSetup='rustup toolchain install stable nightly && rustup component add rustfmt clippy rust-src rls rust-analysis rust-docs'
+alias rustSetup='rustup toolchain install stable && rustup component add rustfmt clippy rust-src rls rust-analysis rust-docs'
 alias cargoInstalls='unset RUSTC_WRAPPER && cargo install sccache && export RUSTC_WRAPPER=sccache && cargo install bat exa fd-find ripgrep grex du-dust starship hyperfine git-delta bandwhich xsv git-absorb cargo-audit cargo-cache cargo-edit cargo-tomlfmt cargo-udeps cargo-update cargo-valgrind csview simple-http-server wasm-pack'
 alias rustUpdate='rustup update && cargoInstalls'
 

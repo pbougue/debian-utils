@@ -6,17 +6,15 @@ Various linux/debian/ubuntu confs & scripts
 
 ### Console & prompt
 
-* `sudo apt install konsole smplayer vlc libssl-dev clang curl git git-gui gnome-tweak-tool htop zlib1g-dev`
+* `sudo apt install konsole smplayer vlc clang curl git git-gui gitk gnome-tweaks chrome-gnome-shell htop zsh fonts-firacode fzf`
 * ssh key
 * snazzy colorscheme for konsole (+ all black background) : https://github.com/miedzinski/konsole-snazzy in /usr/share/konsole
   then activate it in profile
 * install fonts-firacode (and ttf-ancient-fonts-symbola if necessary on old OS), then activate it in konsole profile
-* fzf
 * rustup
-* code
-* teams
+* vscode
 * add git and docker shortcuts/integrations for zsh?
-* define konsole profile to be "default"
+* define konsole profile to be "default" (using 'which zsh')
 * pyenv, pyenv virtualenvwrapper, pyenv install 3.8.6, pyenv global 3.8.6
 * gron for `jsongrep` : https://github.com/tomnomnom/gron#installation
 * https://github.com/pkolaczk/fclones to spot file cloned
@@ -24,13 +22,22 @@ Various linux/debian/ubuntu confs & scripts
 
 ## gnome extensions
 
-- Auto Move Windows
-- AlternateTab
-- Multi Monitors Add-On
-- Native Window Placement
-- Pixel Saver
-- Removable Drive Menu
-- Workspace Indicator
+https://doc.ubuntu-fr.org/extensions-gnome#installation_manuelle_des_extensions
+
+```bash
+sudo apt install gnome-shell-extension-system-monitor
+```
+
+* Auto Move Windows
+* AlternateTab
+* Multi Monitors Add-On
+* Native Window Placement
+* ShellTile
+* Pixel Saver (crashes on Ubuntu 21.10, "No Title Bar" not available either)
+* Removable Drive Menu
+* Workspace Indicator
+* System monitor
+* Custom Hot Corners
 
 ## By computer type
 

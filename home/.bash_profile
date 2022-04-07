@@ -34,19 +34,14 @@ setopt no_share_history
 export PATH="$HOME/dev/build/navitia/release/ed:$HOME/dev/build/navitia/release/kraken:$PATH"
 
 
-# Github API token
-export HOMEBREW_GITHUB_API_TOKEN=0b4eb022243c3e54bd011a41a074cd9abf77a55d
-
-
 # Python
 export WORKON_HOME="~/.venv"
 
 
 #Golang
-# export GOPATH=$HOME/gopath:$HOME/dev/go
 export GOPATH=$HOME/dev/go
-# export PATH="/usr/local/go/bin:$PATH"
-export PATH="$GOPATH:$GOPATH/bin:$PATH"
+export PATH="/usr/local/go/bin:$PATH"
+export PATH="$(go env GOPATH)/bin:$PATH"
 
 
 # Rust
