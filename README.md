@@ -18,7 +18,7 @@ Various linux/debian/ubuntu confs & scripts
 * Remove autostart ssh-agent to manage keys
 * Remove bluetooth autostart (AutoEnable=false in /etc/bluetooth/main.conf)
 * define konsole profile to be "default" (using 'which zsh')
-* pyenv, pyenv virtualenvwrapper, pyenv install 3.8.6, pyenv global 3.8.6
+* pyenv, pyenv-virtualenv, pyenv install 3.8.9, pyenv virtualenv 3.8.9 ds4
 * gron for `jsongrep` : https://github.com/tomnomnom/gron#installation
 * https://github.com/pkolaczk/fclones to spot file cloned
 * https://github.com/wfxr/csview to read csv files

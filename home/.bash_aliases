@@ -9,7 +9,7 @@
 
 
 # Python
-# alias workon='pyenv activate'
+alias workon='pyenv activate'
 
 # mkvenvactivate() {
 # 	pyenv virtualenv "$@";
