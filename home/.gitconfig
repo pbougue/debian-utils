@@ -35,9 +35,6 @@
 	up = !git pull --rebase && git submodule update --recursive
 	# fetch a PR and create a new branch with it's number
 	pr = "!f() { git fetch -fu ${2:-canaltp} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f" 
-[gui]
-	fontui = -family \"DejaVu Sans\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
-	fontdiff = -family \"DejaVu Sans Mono\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
 [submodule]
 	recurse = true
 
