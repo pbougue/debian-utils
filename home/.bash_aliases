@@ -157,7 +157,7 @@ alias tartare='workon tartare && PYTHONPATH=$PYTHONPATH:~/dev/sources/tartare/ta
 
 
 # Visual Studio Code
-alias code='workon vscode && code'
+# alias code='workon vscode && code'
 
 
 # Sublime Text

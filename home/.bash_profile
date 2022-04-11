@@ -34,10 +34,6 @@ setopt no_share_history
 export PATH="$HOME/dev/build/navitia/release/ed:$HOME/dev/build/navitia/release/kraken:$PATH"
 
 
-# Python
-export WORKON_HOME="~/.venv"
-
-
 #Golang
 export GOPATH=$HOME/dev/go
 export PATH="/usr/local/go/bin:$PATH"

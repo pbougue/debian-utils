@@ -154,7 +154,7 @@ export IGNOREOF=1
 
 export PS1="\[\e[33;32;4m\]\u@\[\e[33;39m\]\h:\[\e[33;32m\]\w\$\[\e[m\]"
 
-export WORKON_HOME="~/.venv"
+# export WORKON_HOME="~/.venv"
 
 export PATH="$HOME/local/bin:$HOME/dev/build/navitia/releaseClang/ed:$HOME/dev/build/navitia/releaseClang/kraken:$PATH"
 
