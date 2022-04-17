@@ -16,6 +16,7 @@ Various linux/debian/ubuntu confs & scripts
 * add git and docker shortcuts/integrations for zsh?
 * git-gui options : "none" as spellchecker dictionnary
 * Remove autostart ssh-agent to manage keys
+* Remove bluetooth autostart (AutoEnable=false in /etc/bluetooth/main.conf)
 * define konsole profile to be "default" (using 'which zsh')
 * pyenv, pyenv virtualenvwrapper, pyenv install 3.8.6, pyenv global 3.8.6
 * gron for `jsongrep` : https://github.com/tomnomnom/gron#installation
