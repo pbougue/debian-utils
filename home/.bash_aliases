@@ -330,6 +330,11 @@ alias du='dust'  # or 'ncdu'
 alias md='mkdir -p'
 alias rd='rmdir'
 
+# To be filled before real use
+alias usbKeyCreate='echo "sudo dd bs=4M status=progress oflag=sync if=</path/to/iso> of=</path/to/volume/like/dev/sda (use _sudo fdisk -l_ or _lsblk_)> && sync"'
+# To be filled before real use
+alias usbKeyWipe='echo "sudo dd if=/dev/zero of=</path/to/volume/like/dev/sda (use _sudo fdisk -l_ or _lsblk_)> bs=4M && sync"'
+
 # https://askubuntu.com/questions/271387/how-to-restart-wifi-connection
 alias wifiRestart='nmcli radio wifi off && sleep 5 && nmcli radio wifi on'
 alias networkRestart='sudo systemctl restart NetworkManager.service'
