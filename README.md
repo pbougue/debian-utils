@@ -6,7 +6,7 @@ Various linux/debian/ubuntu confs & scripts
 
 ### Console & prompt
 
-* `sudo apt install konsole smplayer vlc clang curl git git-gui gitk gnome-tweaks chrome-gnome-shell htop zsh fonts-firacode fzf`
+* `sudo apt install konsole smplayer vlc clang curl git git-gui gitk gnome-tweaks chrome-gnome-shell htop zsh fonts-firacode fzf ffmpeg libgtk-3-dev puddletag`
 * ssh key
 * snazzy colorscheme for konsole (+ all black background) : https://github.com/miedzinski/konsole-snazzy in /usr/share/konsole
   then activate it in profile
@@ -20,7 +20,7 @@ Various linux/debian/ubuntu confs & scripts
 * define konsole profile to be "default" (using 'which zsh')
 * pyenv, pyenv-virtualenv, pyenv install 3.8.9, pyenv virtualenv 3.8.9 ds4
 * gron for `jsongrep` : https://github.com/tomnomnom/gron#installation
-* https://github.com/pkolaczk/fclones to spot file cloned
+* https://github.com/pkolaczk/fclones to spot file cloned (or use 'czkawka_gui')
 * https://github.com/wfxr/csview to read csv files
 
 ## gnome extensions
