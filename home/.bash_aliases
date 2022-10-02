@@ -193,13 +193,44 @@ alias gitk='gitk --all'
 # }
 # alias cargoUpdate='rustup update'
 alias rustSetup='rustup toolchain install stable && rustup component add rustfmt clippy rust-src rls rust-analysis rust-docs'
-alias cargoInstalls='unset RUSTC_WRAPPER && cargo install sccache && export RUSTC_WRAPPER=sccache && cargo install bat exa fd-find ripgrep grex du-dust hyperfine git-delta bandwhich xsv git-absorb cargo-audit cargo-cache cargo-edit cargo-tomlfmt cargo-udeps cargo-update cargo-valgrind csview simple-http-server wasm-pack czkawka_gui && starshipInstall'
+alias cargoInstalls='sccacheInstall \
+                     && cargo install bat \
+                                      exa \
+                                      fd-find \
+                                      ripgrep \
+                                      grex \
+                                      du-dust \
+                                      hyperfine \
+                                      git-delta \
+                                      bandwhich \
+                                      xsv \
+                                      git-absorb \
+                                      cargo-audit \
+                                      cargo-cache \
+                                      cargo-edit \
+                                      cargo-tomlfmt \
+                                      cargo-udeps \
+                                      cargo-update \
+                                      cargo-valgrind \
+                                      csview \
+                                      simple-http-server \
+                                      wasm-pack \
+                                      czkawka_gui \
+                     && starshipInstall'
 alias rustUpdate='rustup update && cargoInstalls'
 alias starshipInstall='mkdir -p ~/local/bin/starship_installer \
                        && cd ~/local/bin/starship_installer \
                        && curl -LO https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-gnu.tar.gz \
                        && tar -xvf starship-x86_64-unknown-linux-gnu.tar.gz \
                        && cd ~/local/bin && ln -sf starship_installer/starship starship'
+alias sccacheInstall='mkdir -p ~/local/bin/sccache_installer \
+                      && cd ~/local/bin/sccache_installer \
+                      && curl -LO https://github.com/mozilla/sccache/releases/latest/download/$(curl -L -H "Accept: application/vnd.github+json" https://api.github.com/repos/mozilla/sccache/releases/latest | egrep "\"name\": \"sccache.*x86_64.*linux.*\.tar\.gz\"" | grep -v sccache-dist | cut -d \" -f 4)  \
+                      && tar -xvf sccache*x86_64*linux*.tar.gz \
+                      && mv -f sccache*x86_64*linux*/* . \
+                      && cd ~/local/bin \
+                      && chmod u+x sccache_installer/sccache \
+                      && ln -sf sccache_installer/sccache sccache'
 
 # Docker
 alias dockerCleanContainer='docker stop $(docker ps -q); docker rm -v $(docker ps -aq)'
