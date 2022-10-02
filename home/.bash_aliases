@@ -193,8 +193,13 @@ alias gitk='gitk --all'
 # }
 # alias cargoUpdate='rustup update'
 alias rustSetup='rustup toolchain install stable && rustup component add rustfmt clippy rust-src rls rust-analysis rust-docs'
-alias cargoInstalls='unset RUSTC_WRAPPER && cargo install sccache && export RUSTC_WRAPPER=sccache && cargo install bat exa fd-find ripgrep grex du-dust starship hyperfine git-delta bandwhich xsv git-absorb cargo-audit cargo-cache cargo-edit cargo-tomlfmt cargo-udeps cargo-update cargo-valgrind csview simple-http-server wasm-pack czkawka_gui'
+alias cargoInstalls='unset RUSTC_WRAPPER && cargo install sccache && export RUSTC_WRAPPER=sccache && cargo install bat exa fd-find ripgrep grex du-dust hyperfine git-delta bandwhich xsv git-absorb cargo-audit cargo-cache cargo-edit cargo-tomlfmt cargo-udeps cargo-update cargo-valgrind csview simple-http-server wasm-pack czkawka_gui && starshipInstall'
 alias rustUpdate='rustup update && cargoInstalls'
+alias starshipInstall='mkdir -p ~/local/bin/starship_installer \
+                       && cd ~/local/bin/starship_installer \
+                       && curl -LO https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-gnu.tar.gz \
+                       && tar -xvf starship-x86_64-unknown-linux-gnu.tar.gz \
+                       && cd ~/local/bin && ln -sf starship_installer/starship starship'
 
 # Docker
 alias dockerCleanContainer='docker stop $(docker ps -q); docker rm -v $(docker ps -aq)'
