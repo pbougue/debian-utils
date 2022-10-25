@@ -22,6 +22,7 @@ Various linux/debian/ubuntu confs & scripts
 * gron for `jsongrep` : https://github.com/tomnomnom/gron#installation
 * https://github.com/pkolaczk/fclones to spot file cloned
 * https://github.com/wfxr/csview to read csv files
+* add sound-control to tweaked startup, via .local/share/applications/sound_control.desktop and cmd `gnome-control-center sound`
 
 ## gnome extensions
 
