@@ -338,6 +338,8 @@ alias usbKeyWipe='echo "sudo dd if=/dev/zero of=</path/to/volume/like/dev/sda (u
 # https://askubuntu.com/questions/271387/how-to-restart-wifi-connection
 alias wifiRestart='nmcli radio wifi off && sleep 5 && nmcli radio wifi on'
 alias networkRestart='sudo systemctl restart NetworkManager.service'
+alias awsVpnDns='sudo ln -sf /home/pbougue/local/bin/vpn_aws/resolv.conf /etc/resolv.conf'
+alias defaultVpnDns='sudo ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf'
 alias bluetoothStart='/etc/init.d/bluetooth start'
 alias bluetoothStop='/etc/init.d/bluetooth stop'
 
