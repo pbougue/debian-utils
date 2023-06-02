@@ -52,6 +52,13 @@ function swap()
     mv $TMPFILE "$2"
 }
 
+function makejcpu() {
+	export MAKEFLAGS="-j $1"
+}
+
+alias nomakejscpu='unset MAKEFLAGS'
+
+
 # alias maklang=maklangfuntion
 alias maklang='time make'
 # alias makpbf='make protobuf_files'
@@ -65,10 +72,10 @@ alias makjormuntest='workon jormungandr && time JORMUNGANDR_USE_SERPY=True PYTHO
 alias makintegrationtest='workon jormungandr && time JORMUNGANDR_USE_SERPY=True KRAKEN_BUILD_DIR=~/dev/build/navitia/release PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/jormungandr/tests py.test --doctest-modules ~/dev/sources/navitia/source/jormungandr/tests'
 
 alias maktest='workon jormungandr && time make test ; maktyrtest ; makdockertest ; makchaostest' # ; maktyrdockertest'
-alias maked_only='makpbf && maklang -j6 -k ed_executables'
-alias maked='makpbf && maked_only; maklang -j6 -k kraken; maklang -j6 -k && maktest'
-alias makraken='makpbf && maklang -j6 -k kraken; maked_only; maklang -j6 -k && maktest'
-alias makall='makpbf && maklang -j6 -k && maktest'
+alias maked_only='makpbf && maklang -k ed_executables'
+alias maked='makpbf && maked_only; maklang -k kraken; maklang -k && maktest'
+alias makraken='makpbf && maklang -k kraken; maked_only; maklang -k && maktest'
+alias makall='makpbf && maklang -k && maktest'
 
 alias jormungandr='workon jormungandr && PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/jormungandr:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/jormungandr/jormungandr PYTHONUNBUFFERED=1 JORMUNGANDR_CONFIG_FILE=~/dev/sources/navitia/source/jormungandr/jormungandr/dev_settings.py FLASK_APP=jormungandr:app flask run -p 5000 -h 0.0.0.0'
 alias tyr='workon tyr && PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/tyr:~/dev/sources/navitia/source/navitiacommon PYTHONUNBUFFERED=1 TYR_CONFIG_FILE=~/dev/sources/navitia/source/tyr/tyr/dev_settings.py python ~/dev/sources/navitia/source/tyr/manage_tyr.py runserver -p 5002 ; workon jormungandr'
