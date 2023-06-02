@@ -70,6 +70,8 @@ export NVM_DIR="$HOME/.nvm"
 # maven
 export PATH="$HOME/local/bin/maven/apache-maven-3.5.0/bin:$PATH"
 
+# terraform-docs
+export PATH="$HOME/local/bin/terraform-docs:$PATH"
 
 # Common
 ulimit -c unlimited
