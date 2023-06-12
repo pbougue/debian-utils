@@ -36,7 +36,7 @@ sudo apt install gnome-shell-extension-system-monitor
 * Multi Monitors Add-On
 * Native Window Placement
 * ShellTile
-* Pixel Saver (crashes on Ubuntu 21.10, "No Title Bar" not available either)
+* Pixel Saver (crashes on Ubuntu 21.10, "No Title Bar When Maximized" not available either but possible on 22.04)
 * Removable Drive Menu
 * Workspace Indicator
 * System monitor
