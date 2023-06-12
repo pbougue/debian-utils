@@ -1,0 +1,15 @@
+[Desktop Entry]
+Name=SoundControl
+Encoding=UTF-8
+Comment=Sound control console
+GenericName=Sound
+X-GNOME-FullName=SoundControl
+Exec=gnome-control-center sound
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=
+Categories=
+MimeType=
+StartupWMClass=SoundControl
+StartupNotify=true

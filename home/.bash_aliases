@@ -57,9 +57,9 @@ alias maklang='time make'
 # alias makpbf='make protobuf_files'
 alias makpbf='echo "protobuf_files: nothing to do"'
 alias maktyrdockertest='workon tyr_eitri && time make docker_test ; workon jormungandr'
-alias makdockertest='workon eitri && time _VERBOSE=1 make run_test ; echo "Check ./ed/docker_tests/results_ed_integration_test.xml for results" ; workon jormungandr'
+alias makdockertest='workon eitri && time _VERBOSE=1 make -j 3 run_test ; echo "Check ./ed/docker_tests/results_ed_integration_test.xml for results" ; workon jormungandr'
 alias maktyrtest='workon tyr && time make tyr_tests ; workon jormungandr'
-alias makchaostest='workon chaos_tests && time make chaos_tests ; workon jormungandr'
+alias makchaostest='workon tyr && time make chaos_tests ; workon jormungandr'
 # alias maktyrtest='workon tyr && time PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/tyr py.test --doctest-modules ~/dev/sources/navitia/source/tyr/tests ; workon jormungandr'
 alias makjormuntest='workon jormungandr && time JORMUNGANDR_USE_SERPY=True PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/jormungandr/jormungandr py.test --doctest-modules ~/dev/sources/navitia/source/jormungandr/jormungandr'
 alias makintegrationtest='workon jormungandr && time JORMUNGANDR_USE_SERPY=True KRAKEN_BUILD_DIR=~/dev/build/navitia/release PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/source/navitiacommon:~/dev/sources/navitia/source/jormungandr/tests py.test --doctest-modules ~/dev/sources/navitia/source/jormungandr/tests'
@@ -76,7 +76,12 @@ alias tyrsetup='workon tyr && PYTHONPATH=$PYTHONPATH:~/dev/sources/navitia/sourc
 
 alias dbUpgradeJormun='workon tyr && time PYTHONPATH=../navitiacommon:. TYR_CONFIG_FILE=dev_settings.py ./manage_tyr.py db upgrade'
 
-alias updateVenvNavitia='workon jormungandr && pip install -r ~/dev/sources/navitia/source/jormungandr/requirements_dev.txt -U && pip install -U pip && workon eitri && pip install -r ~/dev/sources/navitia/source/eitri/requirements.txt -U && pip install -U pip && workon tyr_eitri && pip install -r ~/dev/sources/navitia/source/eitri/requirements.txt -U && pip install -U pip && pip install -r ~/dev/sources/navitia/source/tyr/requirements_dev.txt -U && workon tyr && pip install -r ~/dev/sources/navitia/source/tyr/requirements_dev.txt -U && pip install -U pip && workon chaos_tests && pip install -r ~/dev/sources/navitia/source/tyr/requirements_dev.txt -U && pip install -U pip && workon cities && pip install -r ~/dev/sources/navitia/source/cities/requirements.txt -U && pip install -U pip && workon monitor && pip install -r ~/dev/sources/navitia/source/monitor/requirements.txt -U && pip install -U pip && workon navitia-precommit && pip install -r ~/dev/sources/navitia/requirements_pre-commit.txt -U && pip install -U pip'
+alias updateVenvNavitia='workon jormungandr && pip install -U pip setuptools wheel && pip install -r ~/dev/sources/navitia/source/jormungandr/requirements_dev.txt -U \
+                        && workon eitri && pip install -U pip setuptools wheel && pip install -r ~/dev/sources/navitia/source/eitri/requirements.txt -U \
+                        && workon tyr_eitri && pip install -U pip setuptools wheel && pip install -r ~/dev/sources/navitia/source/eitri/requirements.txt -U && pip install -r ~/dev/sources/navitia/source/tyr/requirements_dev.txt -U \
+                        && workon tyr && pip install -U pip setuptools wheel && pip install -r ~/dev/sources/navitia/source/tyr/requirements_dev.txt -U \
+                        && workon cities && pip install -U pip setuptools wheel && pip install -r ~/dev/sources/navitia/source/cities/requirements.txt -U \
+                        && workon monitor && pip install -U pip setuptools wheel && pip install -r ~/dev/sources/navitia/source/monitor/requirements.txt -U'
 
 alias installSslNavitia='sudo apt install libssl-dev'
 
@@ -194,9 +199,9 @@ alias gitk='gitk --all'
 # alias cargoUpdate='rustup update'
 alias rustSetup='rustup toolchain install stable && rustup component add rustfmt clippy rust-src rls rust-analysis rust-docs'
 alias cargoInstalls='sccacheInstall \
-                     && cargo install bat \
-                                      exa \
-                                      fd-find \
+                     && exaInstall \
+                     && batInstall \
+                     && cargo install fd-find \
                                       ripgrep \
                                       grex \
                                       du-dust \
@@ -204,7 +209,6 @@ alias cargoInstalls='sccacheInstall \
                                       git-delta \
                                       bandwhich \
                                       xsv \
-                                      git-absorb \
                                       cargo-audit \
                                       cargo-cache \
                                       cargo-edit \
@@ -222,7 +226,8 @@ alias starshipInstall='mkdir -p ~/local/bin/starship_installer \
                        && cd ~/local/bin/starship_installer \
                        && curl -LO https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-gnu.tar.gz \
                        && tar -xvf starship-x86_64-unknown-linux-gnu.tar.gz \
-                       && cd ~/local/bin && ln -sf starship_installer/starship starship'
+                       && cd ~/local/bin \
+                       && ln -sf starship_installer/starship starship'
 alias sccacheInstall='mkdir -p ~/local/bin/sccache_installer \
                       && cd ~/local/bin/sccache_installer \
                       && curl -LO https://github.com/mozilla/sccache/releases/latest/download/$(curl -L -H "Accept: application/vnd.github+json" https://api.github.com/repos/mozilla/sccache/releases/latest | egrep "\"name\": \"sccache.*x86_64.*linux.*\.tar\.gz\"" | grep -v sccache-dist | cut -d \" -f 4)  \
@@ -231,6 +236,58 @@ alias sccacheInstall='mkdir -p ~/local/bin/sccache_installer \
                       && cd ~/local/bin \
                       && chmod u+x sccache_installer/sccache \
                       && ln -sf sccache_installer/sccache sccache'
+alias exaInstall='mkdir -p ~/local/bin/exa_installer \
+                  && cd ~/local/bin/exa_installer \
+                  && curl -LO https://github.com/ogham/exa/releases/latest/download/$(curl -L -H "Accept: application/vnd.github+json" https://api.github.com/repos/ogham/exa/releases/latest | egrep "\"name\": \"exa-linux-x86_64-v[0-9\.]+\.zip\"" | cut -d \" -f 4) \
+                  && unzip -j -o exa-linux-x86_64-v*.zip bin/exa \
+                  && cd ~/local/bin \
+                  && ln -sf exa_installer/exa exa'
+# alias batInstall='mkdir -p ~/local/bin/bat_installer \
+#                   && cd ~/local/bin/bat_installer \
+#                   && curl -L -H "Accept: application/vnd.github+json" https://api.github.com/repos/sharkdp/bat/releases/latest > candidate.json
+#                   && echo $(egrep "^  \"name\": \".+\",$" candidate.json | cut -d \" -f 4)_$(egrep "^  \"created_at\": \".+\",$" candidate.json | cut -d \" -f 4)
+#                   && curl -L https://github.com/sharkdp/bat/releases/latest/download/$(curl -L -H "Accept: application/vnd.github+json" https://api.github.com/repos/sharkdp/bat/releases/latest | egrep "\"name\": \"bat_[0-9\.]+_amd64\.deb\"" | cut -d \" -f 4) -o bat.deb\
+#                   && sudo dpkg -i bat.deb'
+
+alias batInstall='githubReleaseInstall sharkdp/bat "bat_[0-9\.]+_amd64\.deb" deb'
+
+githubReleaseInstall() {
+    # githubReleaseInstall sharkdp/bat "bat_[0-9\.]+_amd64\.deb" deb
+    if [ $# -ne 3 ];
+        then echo "Usage: $0 <user/repo> <file_name_pattern> <installer_type>" >&2
+        exit 1
+    fi
+
+    dir="$(echo $1 | sed -e 's#\([^\/]\+\)\/\([^\/]\+\)#\1-\2_installer#g')"
+
+    mkdir -p ~/local/bin/${dir}
+    pushd ~/local/bin/${dir}
+    curl -L -H "Accept: application/vnd.github+json" https://api.github.com/repos/$1/releases/latest > candidate.json
+    version="$(egrep "^  \"name\": \".+\",?$" candidate.json | cut -d \" -f 4)"
+    candidate_version_date="${version}_$(egrep "^  \"created_at\": \".+\",?$" candidate.json | cut -d \" -f 4)"
+    current_version_date="none"
+    if [ -f current.json ]; then
+        current_version_date="$(egrep "^  \"name\": \".+\",?$" current.json | cut -d \" -f 4)_$(egrep "^  \"created_at\": \".+\",?$" current.json | cut -d \" -f 4)"
+    fi
+    echo
+    if [ ${candidate_version_date} != ${current_version_date} ]; then
+        echo "New version ${candidate_version_date} to be installed for $1"
+
+        REPLY=""
+        vared -p "Continue (Y/n)? " REPLY
+        echo ""
+        if [ $REPLY = "Y" ]; then
+            curl -L https://github.com/$1/releases/latest/download/$(egrep "\"name\": \"$2\"" candidate.json | cut -d \" -f 4) -o candidate.installer
+            if [ $3 = deb ]; then
+                sudo dpkg -i candidate.installer
+            fi
+            mv -f candidate.json current.json
+            mv -f candidate.installer current.installer
+        fi
+    fi
+    popd
+}
+
 
 # Docker
 alias dockerCleanContainer='docker stop $(docker ps -q); docker rm -v $(docker ps -aq)'
@@ -285,7 +342,7 @@ alias networkRestart='sudo systemctl restart NetworkManager.service'
 alias bluetoothStart='/etc/init.d/bluetooth start'
 alias bluetoothStop='/etc/init.d/bluetooth stop'
 
-alias updateDebian='sudo apt update && sudo apt full-upgrade && sudo apt autoremove && sudo apt autoclean && sudo snap refresh ; sudo update-pepperflashplugin-nonfree --install ; sudo update-flashplugin-nonfree --install'
+alias updateDebian='sudo apt update && sudo apt full-upgrade && sudo apt autoremove && sudo apt autoclean && sudo snap refresh'
 
 jsonGrep () {
     gron $2 | grep $1 | gron --ungron

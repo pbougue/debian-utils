@@ -1,1 +1,0 @@
-pycharm-community-4.5.1/bin/pycharm.sh
