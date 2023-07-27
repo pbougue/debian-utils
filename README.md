@@ -32,7 +32,7 @@ Various linux/debian/ubuntu confs & scripts
   gsettings set org.gnome.shell.extensions.dash-to-dock intellihide false
 * Remove bluetooth autostart (AutoEnable=false in /etc/bluetooth/main.conf)
 * add symlinks to all ./home/ files
-* pyenv, pyenv-virtualenv, pyenv install 3.8.9, pyenv virtualenv 3.8.9 ds4
+* pyenv (see https://github.com/pyenv/pyenv-installer), pyenv-virtualenv, pyenv install 3.8.9, pyenv virtualenv 3.8.9 ds4
 * gron for `jsongrep` : https://github.com/tomnomnom/gron#installation
 * https://github.com/pkolaczk/fclones to spot file cloned (or use 'czkawka_gui')
 * https://github.com/wfxr/csview to read csv files
