@@ -19,6 +19,7 @@ Various linux/debian/ubuntu confs & scripts
 * postgresql: docker run -d --restart unless-stopped --hostname docker-postgres --name pierretienne-postgres -e POSTGRES_USER=XXXX -e POSTGRES_PASSWORD=XXXX -e PGDATA=/var/lib/postgresql/data/pgdata -v /home/postgres:/var/lib/postgresql/data -p 5432:5432 postgres:13-alpine
 * git-gui options : "none" as spellchecker dictionnary
 * Remove autostart ssh-agent to manage keys
+* Add autostart sound (cp control_sound.desktop ~/.local/share/applications/control_sound.desktop, then tweak gnome)
 * Remove bluetooth autostart (AutoEnable=false in /etc/bluetooth/main.conf)
 * define konsole profile to be "default" (using 'which zsh')
 * pyenv, pyenv-virtualenv, pyenv install 3.8.9, pyenv virtualenv 3.8.9 ds4
