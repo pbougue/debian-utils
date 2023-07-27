@@ -19,7 +19,10 @@ Various linux/debian/ubuntu confs & scripts
 * redis: docker run -d --restart unless-stopped --hostname docker-redis --name pierretienne-redis -p 6379:6379 redis:alpine
 * postgresql: docker run -d --restart unless-stopped --hostname docker-postgres --name pierretienne-postgres -e POSTGRES_USER=XXXX -e POSTGRES_PASSWORD=XXXX -e PGDATA=/var/lib/postgresql/data/pgdata -v /home/postgres:/var/lib/postgresql/data -p 5432:5432 postgres:13-alpine
 * git-gui options : "none" as spellchecker dictionnary
-* Remove autostart ssh-agent to manage keys
+* Remove autostart ssh-agent to manage keys :
+  (cat /etc/xdg/autostart/gnome-keyring-ssh.desktop; echo Hidden=true; echo X-GNOME-Autostart-enabled=false) > ~/.config/autostart/gnome-keyring-ssh.desktop
+  Then reload gnome-shell (Alt+F2, "r", Enter).
+  killall keyring and/or ssh-agent may be necessary.
 * Add autostart sound (cp control_sound.desktop ~/.local/share/applications/control_sound.desktop, then tweak gnome)
 * Remove bluetooth autostart (AutoEnable=false in /etc/bluetooth/main.conf)
 * add symlinks to all ./home/ files
