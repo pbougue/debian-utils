@@ -24,6 +24,11 @@ Various linux/debian/ubuntu confs & scripts
   Then reload gnome-shell (Alt+F2, "r", Enter).
   killall keyring and/or ssh-agent may be necessary.
 * Add autostart sound (cp control_sound.desktop ~/.local/share/applications/control_sound.desktop, then tweak gnome)
+* Add gnome extension 'Vertical overview' for stacked desktops
+* Remove dock:
+  gsettings set org.gnome.shell.extensions.dash-to-dock autohide false
+  gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
+  gsettings set org.gnome.shell.extensions.dash-to-dock intellihide false
 * Remove bluetooth autostart (AutoEnable=false in /etc/bluetooth/main.conf)
 * add symlinks to all ./home/ files
 * pyenv, pyenv-virtualenv, pyenv install 3.8.9, pyenv virtualenv 3.8.9 ds4
