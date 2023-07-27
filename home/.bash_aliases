@@ -199,9 +199,9 @@ alias gitk='gitk --all'
 # alias cargoUpdate='rustup update'
 alias rustSetup='rustup toolchain install stable && rustup component add rustfmt clippy rust-src rls rust-analysis rust-docs'
 alias cargoInstalls='sccacheInstall \
-                     && cargo install bat \
-                                      exa \
-                                      fd-find \
+                     && exaInstall \
+                     && batInstall \
+                     && cargo install fd-find \
                                       ripgrep \
                                       grex \
                                       du-dust \
@@ -209,7 +209,6 @@ alias cargoInstalls='sccacheInstall \
                                       git-delta \
                                       bandwhich \
                                       xsv \
-                                      git-absorb \
                                       cargo-audit \
                                       cargo-cache \
                                       cargo-edit \
@@ -227,7 +226,8 @@ alias starshipInstall='mkdir -p ~/local/bin/starship_installer \
                        && cd ~/local/bin/starship_installer \
                        && curl -LO https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-gnu.tar.gz \
                        && tar -xvf starship-x86_64-unknown-linux-gnu.tar.gz \
-                       && cd ~/local/bin && ln -sf starship_installer/starship starship'
+                       && cd ~/local/bin \
+                       && ln -sf starship_installer/starship starship'
 alias sccacheInstall='mkdir -p ~/local/bin/sccache_installer \
                       && cd ~/local/bin/sccache_installer \
                       && curl -LO https://github.com/mozilla/sccache/releases/latest/download/$(curl -L -H "Accept: application/vnd.github+json" https://api.github.com/repos/mozilla/sccache/releases/latest | egrep "\"name\": \"sccache.*x86_64.*linux.*\.tar\.gz\"" | grep -v sccache-dist | cut -d \" -f 4)  \
@@ -236,6 +236,52 @@ alias sccacheInstall='mkdir -p ~/local/bin/sccache_installer \
                       && cd ~/local/bin \
                       && chmod u+x sccache_installer/sccache \
                       && ln -sf sccache_installer/sccache sccache'
+alias exaInstall='mkdir -p ~/local/bin/exa_installer \
+                  && cd ~/local/bin/exa_installer \
+                  && curl -LO https://github.com/ogham/exa/releases/latest/download/$(curl -L -H "Accept: application/vnd.github+json" https://api.github.com/repos/ogham/exa/releases/latest | egrep "\"name\": \"exa-linux-x86_64-v[0-9\.]+\.zip\"" | cut -d \" -f 4) \
+                  && unzip -j -o exa-linux-x86_64-v*.zip bin/exa \
+                  && cd ~/local/bin \
+                  && ln -sf exa_installer/exa exa'
+
+alias batInstall='githubReleaseInstall sharkdp/bat "bat_[0-9\.]+_amd64\.deb" deb'
+
+githubReleaseInstall() {
+    # githubReleaseInstall sharkdp/bat "bat_[0-9\.]+_amd64\.deb" deb
+    if [ $# -ne 3 ];
+        then echo "Usage: $0 <user/repo> <file_name_pattern> <installer_type>" >&2
+        exit 1
+    fi
+
+    dir="$(echo $1 | sed -e 's#\([^\/]\+\)\/\([^\/]\+\)#\1-\2_installer#g')"
+
+    mkdir -p ~/local/bin/${dir}
+    pushd ~/local/bin/${dir}
+    curl -L -H "Accept: application/vnd.github+json" https://api.github.com/repos/$1/releases/latest > candidate.json
+    version="$(egrep "^  \"name\": \".+\",?$" candidate.json | cut -d \" -f 4)"
+    candidate_version_date="${version}_$(egrep "^  \"created_at\": \".+\",?$" candidate.json | cut -d \" -f 4)"
+    current_version_date="none"
+    if [ -f current.json ]; then
+        current_version_date="$(egrep "^  \"name\": \".+\",?$" current.json | cut -d \" -f 4)_$(egrep "^  \"created_at\": \".+\",?$" current.json | cut -d \" -f 4)"
+    fi
+    echo
+    if [ ${candidate_version_date} != ${current_version_date} ]; then
+        echo "New version ${candidate_version_date} to be installed for $1"
+
+        REPLY=""
+        vared -p "Continue (Y/n)? " REPLY
+        echo ""
+        if [ $REPLY = "Y" ]; then
+            curl -L https://github.com/$1/releases/latest/download/$(egrep "\"name\": \"$2\"" candidate.json | cut -d \" -f 4) -o candidate.installer
+            if [ $3 = deb ]; then
+                sudo dpkg -i candidate.installer
+            fi
+            mv -f candidate.json current.json
+            mv -f candidate.installer current.installer
+        fi
+    fi
+    popd
+}
+
 
 # Docker
 alias dockerCleanContainer='docker stop $(docker ps -q); docker rm -v $(docker ps -aq)'
