@@ -13,11 +13,12 @@ Various linux/debian/ubuntu confs & scripts
 * install fonts-firacode (and ttf-ancient-fonts-symbola if necessary on old OS), then activate it in konsole profile
 * define konsole profile to be "default" (using 'which zsh')
 * rustup
-* vscode
+* golang
 * docker + symlink /var/lib/docker -> /home/docker for space (same for PG?), then 'sudo service docker restart'
 * rabbitmq: docker run -d --restart unless-stopped --hostname docker-rabbitmq --name pierretienne-rabbitmq -e RABBITMQ_DEFAULT_USER=XXXX -e RABBITMQ_DEFAULT_PASS=XXXX -p 15672:15672 -p 15671:15672 -p 5672:5672 -p 5671:5671 rabbitmq:management-alpine
 * redis: docker run -d --restart unless-stopped --hostname docker-redis --name pierretienne-redis -p 6379:6379 redis:alpine
 * postgresql: docker run -d --restart unless-stopped --hostname docker-postgres --name pierretienne-postgres -e POSTGRES_USER=XXXX -e POSTGRES_PASSWORD=XXXX -e PGDATA=/var/lib/postgresql/data/pgdata -v /home/postgres:/var/lib/postgresql/data -p 5432:5432 postgres:13-alpine
+* vscode, then remove 'ctrl' capture: Files/Preferences/Settings, search "multi select modifier", change it to "alt" instead of ctrlCmd
 * git-gui options : "none" as spellchecker dictionnary
 * Remove autostart ssh-agent to manage keys :
   (cat /etc/xdg/autostart/gnome-keyring-ssh.desktop; echo Hidden=true; echo X-GNOME-Autostart-enabled=false) > ~/.config/autostart/gnome-keyring-ssh.desktop
