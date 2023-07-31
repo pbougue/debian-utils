@@ -208,12 +208,12 @@ alias rustSetup='rustup toolchain install stable && rustup component add rustfmt
 alias cargoInstalls='sccacheInstall \
                      && exaInstall \
                      && batInstall \
+                     && deltaInstall \
                      && cargo install fd-find \
                                       ripgrep \
                                       grex \
                                       du-dust \
                                       hyperfine \
-                                      git-delta \
                                       bandwhich \
                                       xsv \
                                       cargo-audit \
@@ -251,6 +251,7 @@ alias exaInstall='mkdir -p ~/local/bin/exa_installer \
                   && ln -sf exa_installer/exa exa'
 
 alias batInstall='githubReleaseInstall sharkdp/bat "bat_[0-9\.]+_amd64\.deb" deb'
+alias deltaInstall='githubReleaseInstall dandavison/delta "git-delta_[0-9\.]+_amd64.deb" deb'
 
 githubReleaseInstall() {
     # githubReleaseInstall sharkdp/bat "bat_[0-9\.]+_amd64\.deb" deb
