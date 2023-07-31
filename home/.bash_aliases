@@ -205,53 +205,59 @@ alias gitk='gitk --all'
 # }
 # alias cargoUpdate='rustup update'
 alias rustSetup='rustup toolchain install stable && rustup component add rustfmt clippy rust-src rls rust-analysis rust-docs'
-alias cargoInstalls='sccacheInstall \
-                     && exaInstall \
-                     && batInstall \
-                     && deltaInstall \
-                     && cargo install fd-find \
-                                      ripgrep \
-                                      grex \
-                                      du-dust \
-                                      hyperfine \
-                                      bandwhich \
-                                      xsv \
-                                      cargo-audit \
-                                      cargo-cache \
-                                      cargo-edit \
-                                      cargo-tomlfmt \
-                                      cargo-udeps \
-                                      cargo-update \
-                                      cargo-valgrind \
-                                      csview \
-                                      simple-http-server \
-                                      wasm-pack \
-                                      czkawka_gui \
-                     && starshipInstall'
+alias cargoInstalls='cargo install cargo-audit \
+                                   cargo-cache \
+                                   cargo-tomlfmt \
+                                   cargo-udeps \
+                                   cargo-valgrind \
+                                   wasm-pack'
+                                #  cargo-update \
+                                #  cargo-edit \
 alias rustUpdate='rustup update && cargoInstalls'
+
+alias candidateUtilsInstall='cargo install grex \
+                                           bandwhich \
+                                           xsv \
+                                           simple-http-server \
+                                           czkawka_gui'
+alias utilsInstall='sccacheInstall \
+                    && starshipInstall \
+                    && exaInstall \
+                    && batInstall \
+                    && deltaInstall \
+                    && fdInstall \
+                    && ripgrepInstall \
+                    && dustInstall \
+                    && hyperfineInstall \
+                    && csviewInstall'
 alias starshipInstall='mkdir -p ~/local/bin/starship_installer \
                        && cd ~/local/bin/starship_installer \
-                       && curl -LO https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-gnu.tar.gz \
-                       && tar -xvf starship-x86_64-unknown-linux-gnu.tar.gz \
+                       && curl -L https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-gnu.tar.gz -o candidate.installer \
+                       && tar -xvf candidate.installer \
                        && cd ~/local/bin \
                        && ln -sf starship_installer/starship starship'
 alias sccacheInstall='mkdir -p ~/local/bin/sccache_installer \
                       && cd ~/local/bin/sccache_installer \
-                      && curl -LO https://github.com/mozilla/sccache/releases/latest/download/$(curl -L -H "Accept: application/vnd.github+json" https://api.github.com/repos/mozilla/sccache/releases/latest | egrep "\"name\": \"sccache.*x86_64.*linux.*\.tar\.gz\"" | grep -v sccache-dist | cut -d \" -f 4)  \
-                      && tar -xvf sccache*x86_64*linux*.tar.gz \
+                      && rm -rf sccache*x86_64*linux* \
+                      && curl -L https://github.com/mozilla/sccache/releases/latest/download/$(curl -L -H "Accept: application/vnd.github+json" https://api.github.com/repos/mozilla/sccache/releases/latest | egrep "\"name\": \"sccache.*x86_64.*linux.*\.tar\.gz\"" | grep -v sccache-dist | cut -d \" -f 4) -o candidate.installer \
+                      && tar -xvf candidate.installer \
                       && mv -f sccache*x86_64*linux*/* . \
                       && cd ~/local/bin \
                       && chmod u+x sccache_installer/sccache \
                       && ln -sf sccache_installer/sccache sccache'
 alias exaInstall='mkdir -p ~/local/bin/exa_installer \
                   && cd ~/local/bin/exa_installer \
-                  && curl -LO https://github.com/ogham/exa/releases/latest/download/$(curl -L -H "Accept: application/vnd.github+json" https://api.github.com/repos/ogham/exa/releases/latest | egrep "\"name\": \"exa-linux-x86_64-v[0-9\.]+\.zip\"" | cut -d \" -f 4) \
-                  && unzip -j -o exa-linux-x86_64-v*.zip bin/exa \
+                  && curl -L https://github.com/ogham/exa/releases/latest/download/$(curl -L -H "Accept: application/vnd.github+json" https://api.github.com/repos/ogham/exa/releases/latest | egrep "\"name\": \"exa-linux-x86_64-v[0-9\.]+\.zip\"" | cut -d \" -f 4) -o candidate.installer \
+                  && unzip -j -o candidate.installer bin/exa \
                   && cd ~/local/bin \
                   && ln -sf exa_installer/exa exa'
-
 alias batInstall='githubReleaseInstall sharkdp/bat "bat_[0-9\.]+_amd64\.deb" deb'
 alias deltaInstall='githubReleaseInstall dandavison/delta "git-delta_[0-9\.]+_amd64.deb" deb'
+alias fdInstall='githubReleaseInstall sharkdp/fd "fd_[0-9\.]+_amd64.deb" deb'
+alias ripgrepInstall='githubReleaseInstall BurntSushi/ripgrep "ripgrep_[0-9\.]+_amd64.deb" deb'
+alias dustInstall='githubReleaseInstall bootandy/dust "du-dust_[0-9\.]+_amd64.deb" deb'
+alias hyperfineInstall='githubReleaseInstall sharkdp/hyperfine "hyperfine_[0-9\.]+_amd64.deb" deb'
+alias csviewInstall='githubReleaseInstall wfxr/csview "csview-musl_[0-9\.]+_amd64.deb" deb'
 
 githubReleaseInstall() {
     # githubReleaseInstall sharkdp/bat "bat_[0-9\.]+_amd64\.deb" deb
@@ -351,7 +357,12 @@ alias defaultVpnDns='sudo ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.co
 alias bluetoothStart='/etc/init.d/bluetooth start'
 alias bluetoothStop='/etc/init.d/bluetooth stop'
 
-alias updateDebian='sudo apt update && sudo apt full-upgrade && sudo apt autoremove && sudo apt autoclean && sudo snap refresh'
+alias updateDebian='sudo apt update \
+                    && sudo apt full-upgrade \
+                    && sudo apt autoremove \
+                    && sudo apt autoclean \
+                    && utilsInstall \
+                    && sudo snap refresh'
 
 jsonGrep () {
     gron $2 | grep $1 | gron --ungron
