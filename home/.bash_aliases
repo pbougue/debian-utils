@@ -218,6 +218,7 @@ alias rustUpdate='rustup update && cargoInstalls'
 alias candidateUtilsInstall='cargo install grex \
                                            bandwhich \
                                            xsv \
+                                           jless \
                                            simple-http-server \
                                            czkawka_gui'
 alias utilsInstall='sccacheInstall \
