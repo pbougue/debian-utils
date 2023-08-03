@@ -239,7 +239,7 @@ alias starshipInstall='mkdir -p ~/local/bin/starship_installer \
                        && ln -sf starship_installer/starship starship'
 alias sccacheInstall='mkdir -p ~/local/bin/sccache_installer \
                       && cd ~/local/bin/sccache_installer \
-                      && rm -rf sccache*x86_64*linux* \
+                      && rm -rf sccache*x86_64*linux* || true \
                       && curl -L https://github.com/mozilla/sccache/releases/latest/download/$(curl -L -H "Accept: application/vnd.github+json" https://api.github.com/repos/mozilla/sccache/releases/latest | egrep "\"name\": \"sccache.*x86_64.*linux.*\.tar\.gz\"" | grep -v sccache-dist | cut -d \" -f 4) -o candidate.installer \
                       && tar -xvf candidate.installer \
                       && mv -f sccache*x86_64*linux*/* . \
@@ -363,6 +363,7 @@ alias updateDebian='sudo apt update \
                     && sudo apt autoremove \
                     && sudo apt autoclean \
                     && utilsInstall \
+                    && pyenv update \
                     && sudo snap refresh'
 
 jsonGrep () {
