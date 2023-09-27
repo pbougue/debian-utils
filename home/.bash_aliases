@@ -231,27 +231,9 @@ alias utilsInstall='sccacheInstall \
                     && dustInstall \
                     && hyperfineInstall \
                     && csviewInstall'
-alias starshipInstall='mkdir -p ~/local/bin/starship_installer \
-                       && cd ~/local/bin/starship_installer \
-                       && curl -L https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-gnu.tar.gz -o candidate.installer \
-                       && tar -xvf candidate.installer \
-                       && cd ~/local/bin \
-                       && ln -sf starship_installer/starship starship'
-alias sccacheInstall='mkdir -p ~/local/bin/sccache_installer \
-                      && cd ~/local/bin/sccache_installer \
-                      && rm -rf sccache*x86_64*linux* || true \
-                      && curl -L https://github.com/mozilla/sccache/releases/latest/download/$(curl -L -H "Accept: application/vnd.github+json" https://api.github.com/repos/mozilla/sccache/releases/latest | egrep "\"name\": \"sccache.*x86_64.*linux.*\.tar\.gz\"" | grep -v sccache-dist | cut -d \" -f 4) -o candidate.installer \
-                      && tar -xvf candidate.installer \
-                      && mv -f sccache*x86_64*linux*/* . \
-                      && cd ~/local/bin \
-                      && chmod u+x sccache_installer/sccache \
-                      && ln -sf sccache_installer/sccache sccache'
-alias exaInstall='mkdir -p ~/local/bin/exa_installer \
-                  && cd ~/local/bin/exa_installer \
-                  && curl -L https://github.com/ogham/exa/releases/latest/download/$(curl -L -H "Accept: application/vnd.github+json" https://api.github.com/repos/ogham/exa/releases/latest | egrep "\"name\": \"exa-linux-x86_64-v[0-9\.]+\.zip\"" | cut -d \" -f 4) -o candidate.installer \
-                  && unzip -j -o candidate.installer bin/exa \
-                  && cd ~/local/bin \
-                  && ln -sf exa_installer/exa exa'
+alias starshipInstall='githubReleaseInstall starship/starship "starship-x86_64-unknown-linux-gnu\.tar\.gz" tar starship'
+alias sccacheInstall='githubReleaseInstall mozilla/sccache "sccache-v[0-9\.]+-x86_64-unknown-linux-musl\.tar\.gz" tar sccache'
+alias exaInstall='githubReleaseInstall ogham/exa "exa-linux-x86_64-v[0-9\.]+\.zip" zip exa'
 alias batInstall='githubReleaseInstall sharkdp/bat "bat_[0-9\.]+_amd64\.deb" deb'
 alias deltaInstall='githubReleaseInstall dandavison/delta "git-delta_[0-9\.]+_amd64.deb" deb'
 alias fdInstall='githubReleaseInstall sharkdp/fd "fd_[0-9\.]+_amd64.deb" deb'
@@ -262,9 +244,11 @@ alias csviewInstall='githubReleaseInstall wfxr/csview "csview-musl_[0-9\.]+_amd6
 
 githubReleaseInstall() {
     # githubReleaseInstall sharkdp/bat "bat_[0-9\.]+_amd64\.deb" deb
-    if [ $# -ne 3 ];
-        then echo "Usage: $0 <user/repo> <file_name_pattern> <installer_type>" >&2
-        exit 1
+    # githubReleaseInstall ogham/exa "exa-linux-x86_64-v[0-9\.]+\.zip" zip exa
+    # githubReleaseInstall starship/starship "starship-x86_64-unknown-linux-gnu\.tar\.gz" tar starship
+    if [ $# -ne 3 ] && [ $# -ne 4 ];
+        then echo "Usage: $0 <user/repo> <archive_name_pattern> <installer_type> [<bin_name>]" >&2
+        return 1
     fi
 
     dir="$(echo $1 | sed -e 's#\([^\/]\+\)\/\([^\/]\+\)#\1-\2_installer#g')"
@@ -276,7 +260,9 @@ githubReleaseInstall() {
     candidate_version_date="${version}_$(egrep "^  \"created_at\": \".+\",?$" candidate.json | cut -d \" -f 4)"
     current_version_date="none"
     if [ -f current.json ]; then
-        current_version_date="$(egrep "^  \"name\": \".+\",?$" current.json | cut -d \" -f 4)_$(egrep "^  \"created_at\": \".+\",?$" current.json | cut -d \" -f 4)"
+        current_version_date="$(egrep "^  \"name\": \".+\",?$" current.json \
+                                | cut -d \" -f 4)_$(egrep "^  \"created_at\": \".+\",?$" current.json \
+                                | cut -d \" -f 4)"
     fi
     echo
     if [ ${candidate_version_date} != ${current_version_date} ]; then
@@ -289,6 +275,19 @@ githubReleaseInstall() {
             curl -L https://github.com/$1/releases/latest/download/$(egrep "\"name\": \"$2\"" candidate.json | cut -d \" -f 4) -o candidate.installer
             if [ $3 = deb ]; then
                 sudo dpkg -i candidate.installer
+            fi
+            if [ $3 = zip ]; then
+                unzip -j -o candidate.installer
+                pushd ~/local/bin
+                echo $4
+                ln -snf  ~/local/bin/${dir}/$4 $4
+                popd
+            fi
+            if [ $3 = tar ]; then
+                tar -xvf candidate.installer --xform='s#^.+/##x'
+                pushd ~/local/bin
+                ln -snf  ~/local/bin/${dir}/$4 $4
+                popd
             fi
             mv -f candidate.json current.json
             mv -f candidate.installer current.installer
