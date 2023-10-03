@@ -363,6 +363,7 @@ alias updateDebian='sudo apt update \
                     && sudo apt autoclean \
                     && utilsInstall \
                     && pyenv update \
+                    && sudo rclone selfupdate \
                     && sudo snap refresh'
 
 jsonGrep () {
