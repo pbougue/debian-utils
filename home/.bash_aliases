@@ -363,6 +363,7 @@ alias updateDebian='sudo apt update \
                     && sudo apt autoclean \
                     && utilsInstall \
                     && pyenv update \
+                    && poetry self update \
                     && sudo rclone selfupdate \
                     && sudo snap refresh'
 
