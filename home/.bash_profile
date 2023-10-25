@@ -45,6 +45,7 @@ export RUST_SRC_PATH=${HOME}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/
 #export RLS_ROOT=$HOME/dev/source/rls
 export RUSTC_WRAPPER=sccache
 . "$HOME/.cargo/env"
+export CARGO_BUILD_JOBS=3
 
 
 # Python
@@ -72,6 +73,11 @@ export PATH="$HOME/local/bin/maven/apache-maven-3.5.0/bin:$PATH"
 
 # terraform-docs
 export PATH="$HOME/local/bin/terraform-docs:$PATH"
+
+# Nvidia Optimus
+# to be added into /etc/environment.d/80nvidia-optimus.conf (remove export)
+export __NV_PRIME_RENDER_OFFLOAD=1
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
 
 # Common
 ulimit -c unlimited
