@@ -211,6 +211,7 @@ alias cargoInstalls='cargo install cargo-audit \
                                    cargo-udeps \
                                    cargo-valgrind \
                                    cargo-tarpaulin \
+                                   cargo-expand \
                                    wasm-pack'
                                 #  cargo-update \
                                 #  cargo-edit \
