@@ -35,9 +35,9 @@ export PATH="$HOME/dev/build/navitia/release/ed:$HOME/dev/build/navitia/release/
 
 
 #Golang
-export GOPATH=$HOME/dev/go
-export PATH="/usr/local/go/bin:$PATH"
-export PATH="$(go env GOPATH)/bin:$PATH"
+# export GOPATH=$HOME/dev/go
+# export PATH="/usr/local/go/bin:$PATH"
+# export PATH="$(go env GOPATH)/bin:$PATH"
 
 
 # Rust
