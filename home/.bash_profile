@@ -46,6 +46,7 @@ export RUST_SRC_PATH=${HOME}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/
 export RUSTC_WRAPPER=sccache
 . "$HOME/.cargo/env"
 export CARGO_BUILD_JOBS=3
+# export RUSTFLAGS="-Cinstrument-coverage"
 
 
 # Python

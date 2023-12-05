@@ -204,13 +204,14 @@ alias gitk='gitk --all'
 #     fi
 # }
 # alias cargoUpdate='rustup update'
-alias rustSetup='rustup toolchain install stable && rustup component add rustfmt clippy rust-src rls rust-analysis rust-docs'
+alias rustSetup='rustup toolchain install stable && rustup component add rustfmt clippy rust-src rls rust-analysis rust-docs llvm-tools-preview'
 alias cargoInstalls='cargo install cargo-audit \
                                    cargo-cache \
                                    cargo-tomlfmt \
                                    cargo-udeps \
                                    cargo-valgrind \
                                    cargo-tarpaulin \
+                                   grcov \
                                    cargo-expand \
                                    wasm-pack'
                                 #  cargo-update \
