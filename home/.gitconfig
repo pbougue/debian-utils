@@ -15,6 +15,7 @@
 	ui = true
 [merge]
 	tool = meld
+	conflictStyle = zdiff3
 [alias]
 	amend = commit --amend
 	st = status -sb
@@ -35,6 +36,8 @@
 	up = !git pull --rebase && git submodule update --recursive
 	# fetch a PR and create a new branch with it's number
 	pr = "!f() { git fetch -fu ${2:-canaltp} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f" 
+	pfl = push --force-with-lease
+	co = checkout
 [submodule]
 	recurse = true
 
