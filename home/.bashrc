@@ -8,6 +8,11 @@ case $- in
       *) return;;
 esac
 
+# Switch to ZSH shell
+if test -t 1; then
+zsh
+fi
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
