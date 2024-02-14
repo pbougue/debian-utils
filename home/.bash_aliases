@@ -233,7 +233,8 @@ alias utilsInstall='sccacheInstall \
                     && ripgrepInstall \
                     && dustInstall \
                     && hyperfineInstall \
-                    && csviewInstall'
+                    && csviewInstall \
+                    && bottomInstall'
 alias starshipInstall='githubReleaseInstall starship/starship "starship-x86_64-unknown-linux-gnu\.tar\.gz" tar starship'
 alias sccacheInstall='githubReleaseInstall mozilla/sccache "sccache-v[0-9\.]+-x86_64-unknown-linux-musl\.tar\.gz" tar sccache'
 alias exaInstall='githubReleaseInstall ogham/exa "exa-linux-x86_64-v[0-9\.]+\.zip" zip exa'
@@ -244,6 +245,7 @@ alias ripgrepInstall='githubReleaseInstall BurntSushi/ripgrep "ripgrep_[0-9\.\-]
 alias dustInstall='githubReleaseInstall bootandy/dust "du-dust_[0-9\.]+_amd64\.deb" deb'
 alias hyperfineInstall='githubReleaseInstall sharkdp/hyperfine "hyperfine_[0-9\.]+_amd64\.deb" deb'
 alias csviewInstall='githubReleaseInstall wfxr/csview "csview-musl_[0-9\.]+_amd64\.deb" deb'
+alias bottomInstall='githubReleaseInstall ClementTsang/bottom "bottom_[0-9\.]+_amd64\.deb" deb'
 
 githubReleaseInstall() {
     # githubReleaseInstall sharkdp/bat "bat_[0-9\.]+_amd64\.deb" deb
