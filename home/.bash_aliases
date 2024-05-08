@@ -365,7 +365,7 @@ alias bluetoothStop='/etc/init.d/bluetooth stop'
 alias updateDebian='sudo apt update \
                     && sudo apt full-upgrade \
                     && sudo apt autoremove \
-                    && sudo apt autoclean \
+                    && sudo apt-get clean \
                     && utilsInstall \
                     && pyenv update \
                     && poetry self update \
