@@ -8,6 +8,11 @@ case $- in
       *) return;;
 esac
 
+# https://gist.github.com/Ta180m/e1471413f62e3ed94e72001d42e77e22
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
+export LIBGL_ALWAYS_INDIRECT=1
+gnome-session
+
 # Switch to ZSH shell
 if test -t 1; then
 zsh
