@@ -15,6 +15,7 @@
 	ui = true
 [merge]
 	tool = meld
+	#tool = difft
 	conflictStyle = zdiff3
 [alias]
 	amend = commit --amend

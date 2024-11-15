@@ -226,6 +226,7 @@ alias candidateUtilsInstall='cargo install grex \
                                            czkawka_gui'
 alias utilsInstall='sccacheInstall \
                     && starshipInstall \
+                    && difftasticInstall \
                     && exaInstall \
                     && batInstall \
                     && deltaInstall \
@@ -237,6 +238,7 @@ alias utilsInstall='sccacheInstall \
                     && bottomInstall'
 alias starshipInstall='githubReleaseInstall starship/starship "starship-x86_64-unknown-linux-gnu\.tar\.gz" tar starship'
 alias sccacheInstall='githubReleaseInstall mozilla/sccache "sccache-v[0-9\.]+-x86_64-unknown-linux-musl\.tar\.gz" tar sccache'
+alias difftasticInstall='githubReleaseInstall Wilfred/difftastic "difft-x86_64-unknown-linux-gnu\.tar\.gz" tar difft'
 alias exaInstall='githubReleaseInstall ogham/exa "exa-linux-x86_64-v[0-9\.]+\.zip" zip exa'
 alias batInstall='githubReleaseInstall sharkdp/bat "bat_[0-9\.]+_amd64\.deb" deb'
 alias deltaInstall='githubReleaseInstall dandavison/delta "git-delta_[0-9\.]+_amd64\.deb" deb'
