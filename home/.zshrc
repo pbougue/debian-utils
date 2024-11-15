@@ -185,3 +185,10 @@ bindkey "^?" backward-delete-char
 bindkey "\M-^@"-"\M-^?" self-insert
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# fnm
+FNM_PATH="/home/pierretienne/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/pierretienne/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+fi
