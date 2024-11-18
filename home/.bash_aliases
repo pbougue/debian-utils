@@ -205,25 +205,28 @@ alias gitk='gitk --all'
 # }
 # alias cargoUpdate='rustup update'
 alias rustSetup='rustup toolchain install stable && rustup component add rustfmt clippy rust-src rls rust-analysis rust-docs llvm-tools-preview'
-alias cargoInstalls='cargo install cargo-audit \
-                                   cargo-cache \
-                                   cargo-tomlfmt \
-                                   cargo-udeps \
-                                   cargo-valgrind \
-                                   cargo-tarpaulin \
-                                   grcov \
-                                   cargo-expand \
-                                   wasm-pack'
-                                #  cargo-update \
-                                #  cargo-edit \
+alias cargoInstalls='cargo install --locked \
+                        cargo-audit \
+                        cargo-cache \
+                        cargo-tomlfmt \
+                        cargo-udeps \
+                        cargo-valgrind \
+                        cargo-tarpaulin \
+                        grcov \
+                        cargo-expand \
+                        mergiraf \
+                        wasm-pack'
+                        #  cargo-update \
+                        #  cargo-edit \
 alias rustUpdate='rustup update && cargoInstalls'
 
-alias candidateUtilsInstall='cargo install grex \
-                                           bandwhich \
-                                           xsv \
-                                           jless \
-                                           simple-http-server \
-                                           czkawka_gui'
+alias candidateUtilsInstall='cargo install --locked \
+                                grex \
+                                bandwhich \
+                                xsv \
+                                jless \
+                                simple-http-server \
+                                czkawka_gui'
 alias utilsInstall='sccacheInstall \
                     && starshipInstall \
                     && difftasticInstall \
