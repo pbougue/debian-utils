@@ -168,6 +168,18 @@ alias maktartaretest='workon tartare && time PYTHONPATH=$PYTHONPATH:~/dev/source
 alias tartare='workon tartare && PYTHONPATH=$PYTHONPATH:~/dev/sources/tartare/tartare PYTHONUNBUFFERED=1 python ~/dev/sources/tartare/tartare/app.py flask run'
 
 
+# OSRD
+alias composeDown='./osrd-compose host sw down -v'
+alias composeUpNoBack='./osrd-compose host sw up -d --build osrdyne osrd-images jaeger gateway postgres valkey rabbitmq && cd editoast && diesel migration run --locked-schema'
+alias coreLaunch='cd core ; ./gradlew shadowJar && ALL_INFRA=true java -jar build/libs/osrd-all.jar worker --editoast-url http://localhost:8090/'
+alias coreTest='cd core; ./gradlew spotlessApply && ./gradlew check'
+alias editoastLaunch='cd editoast ; diesel migration run --locked-schema && cargo build && EDITOAST_CORE_SINGLE_WORKER=true NO_CACHE=true cargo run -- runserver'
+alias editoastOnlyTest='cd editoast ; time (cargo fmt && cargo clippy --all-features --all-targets -- -D warnings && RUST_LOG=warn cargo test -- --test-threads=1)'
+alias editoastTest='composeUpNoBack && editoastOnlyTest'
+alias editoastApi='cd editoast ; cargo run openapi > openapi.yaml && cd ../front && npm generate-types'
+alias importRjs='cd editoast ; cargo run -- infra import-railjson -g' # small_infra ../tests/data/infras/small_infra/infra.json
+alias importRolling='cd editoast ; cargo run -- import-rolling-stock' # ../tests/data/rolling_stocks/fast_rolling_stock.json
+
 # Visual Studio Code
 # alias code='workon vscode && code'
 
@@ -193,6 +205,7 @@ alias smgit=smgitfunction
 # alias git='workon precommit; git'
 alias gitkc='git log --decorate=short --format="%Cgreen%h%Cred%d %Creset%s %Cblue[%an | %ad]" --graph --date=short --all'
 alias gitk='gitk --all'
+alias gifftasticGit='DFT_DISPLAY=side-by-side-show-both GIT_EXTERNAL_DIFF=difft git diff' # HEAD^ HEAD
 
 
 # Rust
