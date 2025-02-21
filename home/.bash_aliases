@@ -205,7 +205,7 @@ alias smgit=smgitfunction
 # alias git='workon precommit; git'
 alias gitkc='git log --decorate=short --format="%Cgreen%h%Cred%d %Creset%s %Cblue[%an | %ad]" --graph --date=short --all'
 alias gitk='gitk --all'
-alias gifftasticGit='DFT_DISPLAY=side-by-side-show-both GIT_EXTERNAL_DIFF=difft git diff' # HEAD^ HEAD
+alias gitDiffTastic='DFT_DISPLAY=side-by-side-show-both GIT_EXTERNAL_DIFF=difft git diff' # HEAD^ HEAD
 
 
 # Rust
