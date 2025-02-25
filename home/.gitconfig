@@ -2,10 +2,15 @@
     name = Pierre-Etienne Bougue
     email = pierre-etienne.bougue@canaltp.fr
 
+[branch]
+    sort = -committerdate
+
 [core]
     excludesfile = ~/.gitignore
     editor = vi
     pager = delta
+    fsmonitor = true  # may be commented
+    untrackedCache = true  # may be commented
 
 [color]
     diff = auto
@@ -13,6 +18,9 @@
     branch = auto
     interactive = auto
     ui = true
+
+[column]
+    ui = auto
 
 [merge]
     tool = meld
@@ -45,13 +53,26 @@
 [submodule]
     recurse = true
 
+[help]
+    autocorrect = prompt
+
 [interactive]
     diffFilter = delta --color-only
+
+[init]
+    defaultBranch = main
+
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
 
 [delta]
     features = side-by-side line-numbers decorations
     whitespace-error-style = 22 reverse
     wrap-max-lines = unlimited
+    navigate = true
 
 [delta "decorations"]
     commit-decoration-style = bold yellow box ul
@@ -66,3 +87,28 @@
     required = true
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
+
+[tag]
+    sort = version:refname
+
+[push]
+    default = simple
+    autoSetupRemote = true
+    followTags = true
+
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
+
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
+
+[commit]
+    verbose = true
+
+[rerere]
+    enabled = true
+    autoupdate = true
