@@ -1,6 +1,6 @@
 [user]
-	name = Pierre-Etienne Bougue
-	email = pierre-etienne.bougue@canaltp.fr
+    name = Pierre-Etienne Bougue
+    email = pierre-etienne.bougue@canaltp.fr
 
 [core]
     excludesfile = ~/.gitignore
@@ -8,39 +8,42 @@
     pager = delta
 
 [color]
-	diff = auto
-	status = auto
-	branch = auto
-	interactive = auto
-	ui = true
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    ui = true
+
 [merge]
-	tool = meld
-	#tool = difft
-	conflictStyle = zdiff3
+    tool = meld
+    #tool = difft
+    conflictStyle = zdiff3
+
 [alias]
-	amend = commit --amend
-	st = status -sb
-	smu = submodule update --recursive
-	chs = "!f() { git checkout $1; git submodule update --recursive}; f"
-	rbs = "!f() { git rebase $@; git submodule update --recursive}; f"
-	ch = checkout
-	who = shortlog -sne
-	oneline = log --pretty=oneline --abbrev-commit --graph
-	changes = diff --name-status
-	dic = diff --cached
-	diffstat = diff --stat
-	lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
-	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
-	lg = !"git lg1"    #show stash by regexp on the name
-	sshow = "!f() { git stash show stash^{/$*} -p; }; f"
-	sapply = "!f() { git stash apply stash^{/$*}; }; f"
-	up = !git pull --rebase && git submodule update --recursive
-	# fetch a PR and create a new branch with it's number
-	pr = "!f() { git fetch -fu ${2:-canaltp} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f" 
-	pfl = push --force-with-lease
-	co = checkout
+    amend = commit --amend
+    st = status -sb
+    smu = submodule update --recursive
+    chs = "!f() { git checkout $1; git submodule update --recursive}; f"
+    rbs = "!f() { git rebase $@; git submodule update --recursive}; f"
+    ch = checkout
+    who = shortlog -sne
+    oneline = log --pretty=oneline --abbrev-commit --graph
+    changes = diff --name-status
+    dic = diff --cached
+    diffstat = diff --stat
+    lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
+    lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+    lg = !"git lg1"    #show stash by regexp on the name
+    sshow = "!f() { git stash show stash^{/$*} -p; }; f"
+    sapply = "!f() { git stash apply stash^{/$*}; }; f"
+    up = !git pull --rebase && git submodule update --recursive
+    # fetch a PR and create a new branch with it's number
+    pr = "!f() { git fetch -fu ${2:-canaltp} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
+    pfl = push --force-with-lease
+    co = checkout
+
 [submodule]
-	recurse = true
+    recurse = true
 
 [interactive]
     diffFilter = delta --color-only
@@ -54,10 +57,12 @@
     commit-decoration-style = bold yellow box ul
     file-style = bold yellow ul
     file-decoration-style = none
+
 [gui]
-	spellingdictionary = none
+    spellingdictionary = none
+
 [filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
