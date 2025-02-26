@@ -173,7 +173,7 @@ alias composeDown='./osrd-compose host sw down -v'
 alias composeUpNoBack='./osrd-compose host sw up -d --build osrdyne osrd-images jaeger gateway postgres valkey rabbitmq && cd editoast && diesel migration run --locked-schema'
 alias coreLaunch='cd core ; ./gradlew shadowJar && ALL_INFRA=true java -jar build/libs/osrd-all.jar worker --editoast-url http://localhost:8090/'
 alias coreTest='cd core; ./gradlew spotlessApply && ./gradlew check'
-alias editoastLaunch='cd editoast ; cargo build && diesel migration run --locked-schema && EDITOAST_CORE_SINGLE_WORKER=true NO_CACHE=true cargo run -- runserver'
+alias editoastLaunch='cd editoast ; ./assets/sprites/generate-atlas.sh ; ./assets/fonts/generate-glyphs.sh ; cargo build && diesel migration run --locked-schema && EDITOAST_CORE_SINGLE_WORKER=true NO_CACHE=true cargo run -- runserver'
 alias editoastOnlyTest='cd editoast ; time (cargo fmt && cargo clippy --all-features --all-targets -- -D warnings && RUST_LOG=warn cargo test -- --test-threads=1)'
 alias editoastTest='composeUpNoBack && editoastOnlyTest'
 alias editoastApi='cd editoast ; cargo run openapi > openapi.yaml && cd ../front && npm generate-types'
@@ -251,7 +251,9 @@ alias utilsInstall='sccacheInstall \
                     && dustInstall \
                     && hyperfineInstall \
                     && csviewInstall \
-                    && bottomInstall'
+                    && bottomInstall \
+                    && spreetInstall \
+                    && buildPbfGlyphsInstall'
 alias starshipInstall='githubReleaseInstall starship/starship "starship-x86_64-unknown-linux-gnu\.tar\.gz" tar starship'
 alias sccacheInstall='githubReleaseInstall mozilla/sccache "sccache-v[0-9\.]+-x86_64-unknown-linux-musl\.tar\.gz" tar sccache'
 alias difftasticInstall='githubReleaseInstall Wilfred/difftastic "difft-x86_64-unknown-linux-gnu\.tar\.gz" tar difft'
@@ -264,6 +266,8 @@ alias dustInstall='githubReleaseInstall bootandy/dust "du-dust_[0-9\.\-]+_amd64\
 alias hyperfineInstall='githubReleaseInstall sharkdp/hyperfine "hyperfine_[0-9\.]+_amd64\.deb" deb'
 alias csviewInstall='githubReleaseInstall wfxr/csview "csview-musl_[0-9\.]+_amd64\.deb" deb'
 alias bottomInstall='githubReleaseInstall ClementTsang/bottom "bottom_[0-9\.]+_amd64\.deb" deb'
+alias spreetInstall='githubReleaseInstall flother/spreet "spreet-x86_64-unknown-linux-musl\.tar\.gz" tar spreet'
+alias buildPbfGlyphsInstall='githubReleaseInstall stadiamaps/sdf_font_tools "build_pbf_glyphs.x86_64-unknown-linux-gnu" file build_pbf_glyphs'
 
 githubReleaseInstall() {
     # githubReleaseInstall sharkdp/bat "bat_[0-9\.]+_amd64\.deb" deb
@@ -303,13 +307,19 @@ githubReleaseInstall() {
                 unzip -j -o candidate.installer
                 pushd ~/local/bin
                 echo $4
-                ln -snf  ~/local/bin/${dir}/$4 $4
+                ln -snf ~/local/bin/${dir}/$4 $4
                 popd
             fi
             if [ $3 = tar ]; then
                 tar -xvf candidate.installer --xform='s#^.+/##x'
                 pushd ~/local/bin
-                ln -snf  ~/local/bin/${dir}/$4 $4
+                ln -snf ~/local/bin/${dir}/$4 $4
+                popd
+            fi
+            if [ $3 = file ]; then
+                chmod a+x candidate.installer
+                pushd ~/local/bin
+                ln -snf ~/local/bin/${dir}/current.installer $4
                 popd
             fi
             mv -f candidate.json current.json
