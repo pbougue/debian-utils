@@ -265,7 +265,7 @@ alias ripgrepInstall='githubReleaseInstall BurntSushi/ripgrep "ripgrep_[0-9\.\-]
 alias dustInstall='githubReleaseInstall bootandy/dust "du-dust_[0-9\.\-]+_amd64\.deb" deb'
 alias hyperfineInstall='githubReleaseInstall sharkdp/hyperfine "hyperfine_[0-9\.]+_amd64\.deb" deb'
 alias csviewInstall='githubReleaseInstall wfxr/csview "csview-musl_[0-9\.]+_amd64\.deb" deb'
-alias bottomInstall='githubReleaseInstall ClementTsang/bottom "bottom_[0-9\.]+_amd64\.deb" deb'
+alias bottomInstall='githubReleaseInstall ClementTsang/bottom "bottom_[0-9\.\-]+_amd64\.deb" deb'
 alias spreetInstall='githubReleaseInstall flother/spreet "spreet-x86_64-unknown-linux-musl\.tar\.gz" tar spreet'
 alias buildPbfGlyphsInstall='githubReleaseInstall stadiamaps/sdf_font_tools "build_pbf_glyphs.x86_64-unknown-linux-gnu" file build_pbf_glyphs'
 
