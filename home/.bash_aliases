@@ -170,7 +170,7 @@ alias tartare='workon tartare && PYTHONPATH=$PYTHONPATH:~/dev/sources/tartare/ta
 
 # OSRD
 alias composeDown='./osrd-compose host sw down -v'
-alias composeUpNoBack='./osrd-compose host sw up -d --build osrdyne osrd-images jaeger gateway postgres valkey rabbitmq && cd editoast && diesel migration run --locked-schema'
+alias composeUpNoBack='./osrd-compose host sw up -d --build osrdyne osrd-images jaeger gateway postgres valkey rabbitmq openfga openfga-migrate && cd editoast && diesel migration run --locked-schema'
 alias coreLaunch='cd core ; ./gradlew shadowJar && ALL_INFRA=true java -jar build/libs/osrd-all.jar worker --editoast-url http://localhost:8090/'
 alias coreTest='cd core; ./gradlew spotlessApply && ./gradlew check'
 alias editoastLaunch='cd editoast ; ./assets/sprites/generate-atlas.sh ; ./assets/fonts/generate-glyphs.sh ; cargo build && diesel migration run --locked-schema && EDITOAST_CORE_SINGLE_WORKER=true NO_CACHE=true cargo run -- runserver'
@@ -253,7 +253,8 @@ alias utilsInstall='sccacheInstall \
                     && csviewInstall \
                     && bottomInstall \
                     && spreetInstall \
-                    && buildPbfGlyphsInstall'
+                    && buildPbfGlyphsInstall \
+                    && fgaInstall'
 alias starshipInstall='githubReleaseInstall starship/starship "starship-x86_64-unknown-linux-gnu\.tar\.gz" tar starship'
 alias sccacheInstall='githubReleaseInstall mozilla/sccache "sccache-v[0-9\.]+-x86_64-unknown-linux-musl\.tar\.gz" tar sccache'
 alias difftasticInstall='githubReleaseInstall Wilfred/difftastic "difft-x86_64-unknown-linux-gnu\.tar\.gz" tar difft'
@@ -268,6 +269,7 @@ alias csviewInstall='githubReleaseInstall wfxr/csview "csview-musl_[0-9\.]+_amd6
 alias bottomInstall='githubReleaseInstall ClementTsang/bottom "bottom_[0-9\.\-]+_amd64\.deb" deb'
 alias spreetInstall='githubReleaseInstall flother/spreet "spreet-x86_64-unknown-linux-musl\.tar\.gz" tar spreet'
 alias buildPbfGlyphsInstall='githubReleaseInstall stadiamaps/sdf_font_tools "build_pbf_glyphs.x86_64-unknown-linux-gnu" file build_pbf_glyphs'
+alias fgaInstall='githubReleaseInstall openfga/cli "fga_[0-9\.]+_linux_amd64\.tar\.gz" tar fga'
 
 githubReleaseInstall() {
     set -euo pipefail
