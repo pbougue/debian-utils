@@ -270,9 +270,12 @@ alias spreetInstall='githubReleaseInstall flother/spreet "spreet-x86_64-unknown-
 alias buildPbfGlyphsInstall='githubReleaseInstall stadiamaps/sdf_font_tools "build_pbf_glyphs.x86_64-unknown-linux-gnu" file build_pbf_glyphs'
 
 githubReleaseInstall() {
+    set -euo pipefail
+
     # githubReleaseInstall sharkdp/bat "bat_[0-9\.]+_amd64\.deb" deb
     # githubReleaseInstall ogham/exa "exa-linux-x86_64-v[0-9\.]+\.zip" zip exa
     # githubReleaseInstall starship/starship "starship-x86_64-unknown-linux-gnu\.tar\.gz" tar starship
+    # githubReleaseInstall stadiamaps/sdf_font_tools "build_pbf_glyphs.x86_64-unknown-linux-gnu" file build_pbf_glyphs
     if [ $# -ne 3 ] && [ $# -ne 4 ];
         then echo "Usage: $0 <user/repo> <archive_name_pattern> <installer_type> [<bin_name>]" >&2
         return 1
@@ -306,7 +309,6 @@ githubReleaseInstall() {
             if [ $3 = zip ]; then
                 unzip -j -o candidate.installer
                 pushd ~/local/bin
-                echo $4
                 ln -snf ~/local/bin/${dir}/$4 $4
                 popd
             fi
@@ -327,6 +329,8 @@ githubReleaseInstall() {
         fi
     fi
     popd
+
+    set +euo pipefail
 }
 
 
