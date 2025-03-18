@@ -218,7 +218,7 @@ alias gitDiffTastic='DFT_DISPLAY=side-by-side-show-both GIT_EXTERNAL_DIFF=difft 
 # }
 # alias cargoUpdate='rustup update'
 alias rustSetup='rustup toolchain install stable && rustup component add rustfmt clippy rust-src rls rust-analysis rust-docs llvm-tools-preview'
-alias cargoInstalls='cargo install --locked \
+alias cargoInstalls='cargo binstall \
                         cargo-audit \
                         cargo-cache \
                         cargo-tomlfmt \
@@ -228,12 +228,12 @@ alias cargoInstalls='cargo install --locked \
                         grcov \
                         cargo-expand \
                         mergiraf \
+                        cargo-update \
                         wasm-pack'
-                        #  cargo-update \
                         #  cargo-edit \
-alias rustUpdate='rustup update && cargoInstalls'
+alias rustUpdate='rustup update && cargo install-update -a'
 
-alias candidateUtilsInstall='cargo install --locked \
+alias candidateUtilsInstall='cargo binstall \
                                 grex \
                                 bandwhich \
                                 xsv \
@@ -270,6 +270,7 @@ alias bottomInstall='githubReleaseInstall ClementTsang/bottom "bottom_[0-9\.\-]+
 alias spreetInstall='githubReleaseInstall flother/spreet "spreet-x86_64-unknown-linux-musl\.tar\.gz" tar spreet'
 alias buildPbfGlyphsInstall='githubReleaseInstall stadiamaps/sdf_font_tools "build_pbf_glyphs.x86_64-unknown-linux-gnu" file build_pbf_glyphs'
 alias fgaInstall='githubReleaseInstall openfga/cli "fga_[0-9\.]+_linux_amd64\.tar\.gz" tar fga'
+alias cargoUpdateInstall='cargo binstall cargo-update'
 
 githubReleaseInstall() {
     set -euo pipefail
