@@ -174,7 +174,7 @@ alias composeUpNoBack='./osrd-compose host sw up -d --build osrdyne osrd-images 
 alias coreLaunch='cd core ; ./gradlew shadowJar && ALL_INFRA=true java -jar build/libs/osrd-all.jar worker --editoast-url http://localhost:8090/'
 alias coreTest='cd core; ./gradlew spotlessApply && ./gradlew check'
 alias editoastLaunch='cd editoast ; ./assets/sprites/generate-atlas.sh ; ./assets/fonts/generate-glyphs.sh ; cargo build && diesel migration run --locked-schema && EDITOAST_CORE_SINGLE_WORKER=true NO_CACHE=true cargo run -- runserver'
-alias editoastOnlyTest='cd editoast ; time (cargo fmt && cargo clippy --all-features --all-targets -- -D warnings && RUST_LOG=warn cargo test -- --test-threads=1)'
+alias editoastOnlyTest='cd editoast ; time (taplo fmt && cargo fmt --all && cargo clippy --workspace --all-features --all-targets --fix && RUST_LOG=warn cargo test --workspace -- --test-threads=4)'
 alias editoastTest='composeUpNoBack && editoastOnlyTest'
 alias editoastApi='cd editoast ; cargo run openapi > openapi.yaml && cd ../front && npm generate-types'
 alias importRjs='cd editoast ; cargo run -- infra import-railjson -g' # small_infra ../tests/data/infras/small_infra/infra.json
@@ -218,7 +218,7 @@ alias gitDiffTastic='DFT_DISPLAY=side-by-side-show-both GIT_EXTERNAL_DIFF=difft 
 # }
 # alias cargoUpdate='rustup update'
 alias rustSetup='rustup toolchain install stable && rustup component add rustfmt clippy rust-src rls rust-analysis rust-docs llvm-tools-preview'
-alias cargoInstalls='cargo install --locked \
+alias cargoInstalls='cargo binstall \
                         cargo-audit \
                         cargo-cache \
                         cargo-tomlfmt \
@@ -226,14 +226,16 @@ alias cargoInstalls='cargo install --locked \
                         cargo-valgrind \
                         cargo-tarpaulin \
                         grcov \
+                        diesel_cli \
                         cargo-expand \
                         mergiraf \
+                        cargo-update \
+                        taplo-cli \
                         wasm-pack'
-                        #  cargo-update \
                         #  cargo-edit \
-alias rustUpdate='rustup update && cargoInstalls'
+alias rustUpdate='rustup update && cargo install-update -a'
 
-alias candidateUtilsInstall='cargo install --locked \
+alias candidateUtilsInstall='cargo binstall \
                                 grex \
                                 bandwhich \
                                 xsv \
@@ -270,6 +272,7 @@ alias bottomInstall='githubReleaseInstall ClementTsang/bottom "bottom_[0-9\.\-]+
 alias spreetInstall='githubReleaseInstall flother/spreet "spreet-x86_64-unknown-linux-musl\.tar\.gz" tar spreet'
 alias buildPbfGlyphsInstall='githubReleaseInstall stadiamaps/sdf_font_tools "build_pbf_glyphs.x86_64-unknown-linux-gnu" file build_pbf_glyphs'
 alias fgaInstall='githubReleaseInstall openfga/cli "fga_[0-9\.]+_linux_amd64\.tar\.gz" tar fga'
+alias cargoUpdateInstall='cargo binstall cargo-update'
 
 githubReleaseInstall() {
     set -euo pipefail

@@ -13,6 +13,7 @@ Various linux/debian/ubuntu confs & scripts
 * install fonts-firacode (and ttf-ancient-fonts-symbola if necessary on old OS), then activate it in konsole profile
 * define konsole profile to be "default" (using 'which zsh')
 * rustup
+* cargo-binstall: https://github.com/cargo-bins/cargo-binstall?tab=readme-ov-file#installation
 * golang
 * docker + symlink /var/lib/docker -> /home/docker for space (same for PG?), then 'sudo service docker restart'
 * rabbitmq: docker run -d --restart unless-stopped --hostname docker-rabbitmq --name pierretienne-rabbitmq -e RABBITMQ_DEFAULT_USER=XXXX -e RABBITMQ_DEFAULT_PASS=XXXX -p 15672:15672 -p 15671:15672 -p 5672:5672 -p 5671:5671 rabbitmq:management-alpine
