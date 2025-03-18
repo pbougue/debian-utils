@@ -174,7 +174,7 @@ alias composeUpNoBack='./osrd-compose host sw up -d --build osrdyne osrd-images 
 alias coreLaunch='cd core ; ./gradlew shadowJar && ALL_INFRA=true java -jar build/libs/osrd-all.jar worker --editoast-url http://localhost:8090/'
 alias coreTest='cd core; ./gradlew spotlessApply && ./gradlew check'
 alias editoastLaunch='cd editoast ; ./assets/sprites/generate-atlas.sh ; ./assets/fonts/generate-glyphs.sh ; cargo build && diesel migration run --locked-schema && EDITOAST_CORE_SINGLE_WORKER=true NO_CACHE=true cargo run -- runserver'
-alias editoastOnlyTest='cd editoast ; time (cargo fmt && cargo clippy --all-features --all-targets -- -D warnings && RUST_LOG=warn cargo test -- --test-threads=1)'
+alias editoastOnlyTest='cd editoast ; time (taplo fmt && cargo fmt --all && cargo clippy --workspace --all-features --all-targets --fix && RUST_LOG=warn cargo test --workspace -- --test-threads=4)'
 alias editoastTest='composeUpNoBack && editoastOnlyTest'
 alias editoastApi='cd editoast ; cargo run openapi > openapi.yaml && cd ../front && npm generate-types'
 alias importRjs='cd editoast ; cargo run -- infra import-railjson -g' # small_infra ../tests/data/infras/small_infra/infra.json
