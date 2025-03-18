@@ -226,9 +226,11 @@ alias cargoInstalls='cargo binstall \
                         cargo-valgrind \
                         cargo-tarpaulin \
                         grcov \
+                        diesel_cli \
                         cargo-expand \
                         mergiraf \
                         cargo-update \
+                        taplo-cli \
                         wasm-pack'
                         #  cargo-edit \
 alias rustUpdate='rustup update && cargo install-update -a'
