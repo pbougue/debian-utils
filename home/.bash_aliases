@@ -231,6 +231,21 @@ alias cargoInstalls='cargo binstall \
                         mergiraf \
                         cargo-update \
                         taplo-cli \
+                        just \
+                        sccache \
+                        starship \
+                        difftastic \
+                        exa \
+                        bat \
+                        git-delta \
+                        fd-find \
+                        hyperfine \
+                        du-dust \
+                        csview \
+                        bottom \
+                        spreet \
+                        build_pbf_glyphs \
+                        ripgrep \
                         wasm-pack'
                         #  cargo-edit \
 alias rustUpdate='rustup update && cargo install-update -a'
@@ -242,21 +257,9 @@ alias candidateUtilsInstall='cargo binstall \
                                 jless \
                                 simple-http-server \
                                 czkawka_gui'
-alias utilsInstall='sccacheInstall \
-                    && starshipInstall \
-                    && difftasticInstall \
-                    && exaInstall \
-                    && batInstall \
-                    && deltaInstall \
-                    && fdInstall \
-                    && ripgrepInstall \
-                    && dustInstall \
-                    && hyperfineInstall \
-                    && csviewInstall \
-                    && bottomInstall \
-                    && spreetInstall \
-                    && buildPbfGlyphsInstall \
-                    && fgaInstall'
+
+alias utilsInstall='fgaInstall'
+
 alias starshipInstall='githubReleaseInstall starship/starship "starship-x86_64-unknown-linux-gnu\.tar\.gz" tar starship'
 alias sccacheInstall='githubReleaseInstall mozilla/sccache "sccache-v[0-9\.]+-x86_64-unknown-linux-musl\.tar\.gz" tar sccache'
 alias difftasticInstall='githubReleaseInstall Wilfred/difftastic "difft-x86_64-unknown-linux-gnu\.tar\.gz" tar difft'
@@ -272,7 +275,6 @@ alias bottomInstall='githubReleaseInstall ClementTsang/bottom "bottom_[0-9\.\-]+
 alias spreetInstall='githubReleaseInstall flother/spreet "spreet-x86_64-unknown-linux-musl\.tar\.gz" tar spreet'
 alias buildPbfGlyphsInstall='githubReleaseInstall stadiamaps/sdf_font_tools "build_pbf_glyphs.x86_64-unknown-linux-gnu" file build_pbf_glyphs'
 alias fgaInstall='githubReleaseInstall openfga/cli "fga_[0-9\.]+_linux_amd64\.tar\.gz" tar fga'
-alias cargoUpdateInstall='cargo binstall cargo-update'
 
 githubReleaseInstall() {
     set -euo pipefail
@@ -403,6 +405,7 @@ alias updateDebian='sudo apt update \
                     && sudo apt full-upgrade \
                     && sudo apt autoremove \
                     && sudo apt-get clean \
+                    && rustUpdate \
                     && utilsInstall \
                     && pyenv update \
                     && poetry self update \
