@@ -170,8 +170,8 @@ alias tartare='workon tartare && PYTHONPATH=$PYTHONPATH:~/dev/sources/tartare/ta
 
 # OSRD
 alias composeDown='./osrd-compose host sw down -v'
-alias composeUpNoBack='./osrd-compose host sw up -d --build osrdyne osrd-images jaeger gateway postgres valkey rabbitmq openfga openfga-migrate && cd editoast && diesel migration run --locked-schema'
-alias coreLaunch='cd core ; ./gradlew shadowJar && ALL_INFRA=true java -jar build/libs/osrd-all.jar worker --editoast-url http://localhost:8090/'
+alias composeUpNoBack='./osrd-compose host sw up -d --build osrdyne osrd-images jaeger gateway postgres valkey rabbitmq openfga openfga-migrate && cd editoast && diesel migration run --locked-schema && cd -'
+alias coreLaunch='cd core ; ./gradlew shadowJar && ALL_INFRA=true java -ea -jar build/libs/osrd-all.jar worker --editoast-url http://localhost:8090/'
 alias coreTest='cd core; ./gradlew spotlessApply && ./gradlew check'
 alias editoastLaunch='cd editoast ; ./assets/sprites/generate-atlas.sh ; ./assets/fonts/generate-glyphs.sh ; cargo build && diesel migration run --locked-schema && EDITOAST_CORE_SINGLE_WORKER=true NO_CACHE=true cargo run -- runserver'
 alias editoastOnlyTest='cd editoast ; time (taplo fmt && cargo fmt --all && cargo clippy --workspace --all-features --all-targets --fix && RUST_LOG=warn cargo test --workspace -- --test-threads=4)'
