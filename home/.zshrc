@@ -192,3 +192,5 @@ if [ -d "$FNM_PATH" ]; then
   export PATH="/home/pierretienne/.local/share/fnm:$PATH"
   eval "`fnm env`"
 fi
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
