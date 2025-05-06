@@ -51,14 +51,14 @@ export CARGO_BUILD_JOBS=3
 
 # Python
 # source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+export PATH="$HOME/.local/bin:$PATH"
 
 # pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-export PATH="$PYENV_ROOT/shims:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# export PATH="$PYENV_ROOT/shims:$PATH"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
 # export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 # pyenv virtualenvwrapper_lazy
 

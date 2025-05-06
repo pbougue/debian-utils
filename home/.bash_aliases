@@ -9,7 +9,7 @@
 
 
 # Python
-alias workon='pyenv activate'
+# alias workon='pyenv activate'
 
 # mkvenvactivate() {
 # 	pyenv virtualenv "$@";
@@ -407,8 +407,7 @@ alias updateDebian='sudo apt update \
                     && sudo apt-get clean \
                     && rustUpdate \
                     && utilsInstall \
-                    && pyenv update \
-                    && poetry self update \
+                    && uv self update \
                     && sudo rclone selfupdate \
                     && sudo snap refresh'
 
