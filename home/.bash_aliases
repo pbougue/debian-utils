@@ -139,8 +139,8 @@ alias precommitKirin='workon precommit && cd ~/dev/sources/kirin && pre-commit r
 # navitia-docker-compose
 alias dockerPullNavitiaDevImages='docker pull navitia/tyr-worker:dev && docker pull navitia/jormungandr:dev && docker pull navitia/kraken:dev && docker pull navitia/tyr-web:dev && docker pull navitia/tyr-beat:dev && docker pull navitia/instances-configurator:dev'
 alias kirinConfiguratorDockerBuild='workon artemis_ng && cd ~/dev/sources/navitia-docker-compose/kirin/ && docker build -f Dockerfile-kirin-configurator -t kirin_configurator .'
-alias artemisComposeUp='workon artemis_ng && cd ~/dev/sources/navitia-docker-compose/ && TAG=dev docker-compose -f docker-compose.yml -f artemis/docker-artemis-instance.yml -f kirin/docker-compose_kirin.yml up'
-alias artemisComposeDown='workon artemis_ng && cd ~/dev/sources/navitia-docker-compose/ && TAG=dev docker-compose -f docker-compose.yml -f artemis/docker-artemis-instance.yml -f kirin/docker-compose_kirin.yml down --volumes'
+alias artemisCmpUp='workon artemis_ng && cd ~/dev/sources/navitia-docker-compose/ && TAG=dev docker-compose -f docker-compose.yml -f artemis/docker-artemis-instance.yml -f kirin/docker-compose_kirin.yml up'
+alias artemisCmpDown='workon artemis_ng && cd ~/dev/sources/navitia-docker-compose/ && TAG=dev docker-compose -f docker-compose.yml -f artemis/docker-artemis-instance.yml -f kirin/docker-compose_kirin.yml down --volumes'
 
 
 # artemis
@@ -169,13 +169,13 @@ alias tartare='workon tartare && PYTHONPATH=$PYTHONPATH:~/dev/sources/tartare/ta
 
 
 # OSRD
-alias composeDown='./osrd-compose host sw down -v'
-alias composeUpNoBack='./osrd-compose host sw up -d --build osrdyne osrd-images jaeger gateway postgres valkey rabbitmq openfga openfga-migrate && cd editoast && diesel migration run --locked-schema && cd -'
+alias cmpDown='./osrd-compose host sw down -v'
+alias cmpUpNoBack='./osrd-compose host sw up -d --build osrdyne osrd-images jaeger gateway postgres valkey rabbitmq openfga openfga-migrate && cd editoast && diesel migration run --locked-schema && cd -'
 alias coreLaunch='cd core ; ./gradlew shadowJar && ALL_INFRA=true java -ea -jar build/libs/osrd-all.jar worker --editoast-url http://localhost:8090/'
 alias coreTest='cd core; ./gradlew spotlessApply && ./gradlew check'
 alias editoastLaunch='cd editoast ; ./assets/sprites/generate-atlas.sh ; ./assets/fonts/generate-glyphs.sh ; cargo build && diesel migration run --locked-schema && EDITOAST_CORE_SINGLE_WORKER=true NO_CACHE=true cargo run -- runserver'
 alias editoastOnlyTest='cd editoast ; time (taplo fmt && cargo fmt --all && cargo clippy --workspace --all-features --all-targets --fix && RUST_LOG=warn cargo test --workspace -- --test-threads=4)'
-alias editoastTest='composeUpNoBack && editoastOnlyTest'
+alias editoastTest='cmpUpNoBack && editoastOnlyTest'
 alias editoastApi='cd editoast ; cargo run openapi > openapi.yaml && cd ../front && npm generate-types'
 alias importRjs='cd editoast ; cargo run -- infra import-railjson -g' # small_infra ../tests/data/infras/small_infra/infra.json
 alias importRolling='cd editoast ; cargo run -- import-rolling-stock' # ../tests/data/rolling_stocks/fast_rolling_stock.json
