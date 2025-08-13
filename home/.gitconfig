@@ -81,6 +81,7 @@
 
 [gui]
     spellingdictionary = none
+    gcwarning = false
 
 [filter "lfs"]
     process = git-lfs filter-process
