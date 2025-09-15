@@ -185,8 +185,8 @@ alias editoastLaunch='cd editoast ; \
 alias editoastOnlyTest='cd editoast ; time (taplo fmt && cargo fmt --all && cargo clippy --workspace --all-features --all-targets && RUST_LOG=warn cargo test --workspace -- --test-threads=4)'
 alias editoastTest='cmpUpNoBack && editoastOnlyTest'
 alias editoastApi='cd editoast ; cargo run openapi > openapi.yaml && cd ../front && npm run generate-types ; cd -'
-alias importRjs='cd editoast ; cargo run -- infra import-railjson -g' # small_infra ../tests/data/infras/small_infra/infra.json
-alias importRolling='cd editoast ; cargo run -- import-rolling-stock' # ../tests/data/rolling_stocks/fast_rolling_stock.json
+alias rjsImport='cd editoast ; cargo run -- infra import-railjson -g' # small_infra ../tests/data/infras/small_infra/infra.json
+alias rollingImport='cd editoast ; cargo run -- import-rolling-stock' # ../tests/data/rolling_stocks/fast_rolling_stock.json
 
 # Visual Studio Code
 # alias code='workon vscode && code'
