@@ -184,7 +184,7 @@ alias editoastLaunch='cd editoast ; \
                         ROOT_URL="http://localhost:4000/api" EDITOAST_CORE_SINGLE_WORKER=true EDITOAST_NO_CACHE=true cargo run -- runserver'
 alias editoastOnlyTest='cd editoast ; time (taplo fmt && cargo fmt --all && cargo clippy --workspace --all-features --all-targets && RUST_LOG=warn cargo test --workspace -- --test-threads=4)'
 alias editoastTest='cmpUpNoBack && editoastOnlyTest'
-alias editoastApi='cd editoast ; cargo run openapi > openapi.yaml && cd ../front && npm generate-types'
+alias editoastApi='cd editoast ; cargo run openapi > openapi.yaml && cd ../front && npm run generate-types ; cd -'
 alias importRjs='cd editoast ; cargo run -- infra import-railjson -g' # small_infra ../tests/data/infras/small_infra/infra.json
 alias importRolling='cd editoast ; cargo run -- import-rolling-stock' # ../tests/data/rolling_stocks/fast_rolling_stock.json
 
