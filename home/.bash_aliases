@@ -181,7 +181,7 @@ alias editoastLaunch='cd editoast ; \
                         diesel migration run --locked-schema && \
                         cargo run -- user add "mock/mocked" "Example User" && \
                         cargo run -- roles add "mock/mocked" Admin && \
-                        EDITOAST_CORE_SINGLE_WORKER=true EDITOAST_NO_CACHE=true cargo run -- runserver'
+                        ROOT_URL="http://localhost:4000/api" EDITOAST_CORE_SINGLE_WORKER=true EDITOAST_NO_CACHE=true cargo run -- runserver'
 alias editoastOnlyTest='cd editoast ; time (taplo fmt && cargo fmt --all && cargo clippy --workspace --all-features --all-targets --fix && RUST_LOG=warn cargo test --workspace -- --test-threads=4)'
 alias editoastTest='cmpUpNoBack && editoastOnlyTest'
 alias editoastApi='cd editoast ; cargo run openapi > openapi.yaml && cd ../front && npm generate-types'
