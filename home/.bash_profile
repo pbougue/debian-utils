@@ -49,6 +49,11 @@ export CARGO_BUILD_JOBS=3
 # export RUSTFLAGS="-Cinstrument-coverage"
 
 
+# Java
+export JAVA_HOME=/usr/local/jdk-21
+export PATH="$JAVA_HOME/bin:$PATH"
+
+
 # Python
 # source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 export PATH="$HOME/.local/bin:$PATH"
