@@ -169,9 +169,9 @@ alias tartare='workon tartare && PYTHONPATH=$PYTHONPATH:~/dev/sources/tartare/ta
 
 
 # OSRD
-alias cmpDown='./osrd-compose host sw down -v'
-alias cmpNoBuildUpNoBack='./osrd-compose host sw up -d osrdyne osrd-images jaeger gateway postgres valkey rabbitmq openfga openfga-migrate && cd editoast && diesel migration run --locked-schema && cd -'
-alias cmpUpNoBack='./osrd-compose host sw up -d --build osrdyne osrd-images jaeger gateway postgres valkey rabbitmq openfga openfga-migrate && cd editoast && diesel migration run --locked-schema && cd -'
+alias cmpDown='./osrd-compose dev-front host sw down -v'
+alias cmpNoBuildUpNoBack='./osrd-compose dev-front host sw up -d osrdyne osrd-images jaeger gateway postgres valkey rabbitmq openfga openfga-migrate front && cd editoast && diesel migration run --locked-schema && cd -'
+alias cmpUpNoBack='./osrd-compose dev-front host sw up -d --build osrdyne osrd-images jaeger gateway postgres valkey rabbitmq openfga openfga-migrate front && cd editoast && diesel migration run --locked-schema && cd -'
 alias coreLaunch='cd core ; ./gradlew shadowJar && ALL_INFRA=true java -ea -jar build/libs/osrd-all.jar worker --editoast-url http://localhost:8090/'
 alias coreTest='cd core; ./gradlew spotlessApply && ./gradlew check'
 alias editoastLaunch='cd editoast ; \
