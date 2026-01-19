@@ -254,7 +254,9 @@ alias cargoInstalls='cargo binstall \
                         spreet \
                         build_pbf_glyphs \
                         ripgrep \
-                        wasm-pack'
+                        wasm-pack ; \
+                     cargo install --locked \
+                        wild-linker'
                         #  cargo-edit \
 alias rustUpdate='rustup update && cargo install-update -a'
 
