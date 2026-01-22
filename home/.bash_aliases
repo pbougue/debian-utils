@@ -170,21 +170,15 @@ alias tartare='workon tartare && PYTHONPATH=$PYTHONPATH:~/dev/sources/tartare/ta
 
 # OSRD
 alias cmpDown='./osrd-compose dev-front host sw down -v'
-alias cmpNoBuildUpNoBack='./osrd-compose dev-front host sw up -d osrdyne osrd-images jaeger gateway postgres valkey rabbitmq openfga openfga-migrate front && cd editoast && diesel migration run --locked-schema && cd -'
-alias cmpUpNoBack='./osrd-compose dev-front host sw up -d --build osrdyne osrd-images jaeger gateway postgres valkey rabbitmq openfga openfga-migrate front && cd editoast && diesel migration run --locked-schema && cd -'
-alias coreLaunch='cd core ; ./gradlew shadowJar && ALL_INFRA=true java -ea -jar build/libs/osrd-all.jar worker --editoast-url http://localhost:8090/'
-alias coreTest='cd core; ./gradlew spotlessApply && ./gradlew check'
+alias cmpNoBuildUpNoBack='./osrd-compose dev-front host sw up -d osrdyne osrd-images jaeger gateway postgres valkey rabbitmq s3 s3_init openfga openfga-migrate front && cd editoast && cargo run --package fga_migrations apply && diesel migration run --locked-schema && cd -'
+alias cmpUpNoBack='./osrd-compose dev-front host sw up -d --build osrdyne osrd-images jaeger gateway postgres valkey rabbitmq s3 s3_init openfga openfga-migrate front && cd editoast && cargo run --package fga_migrations apply && diesel migration run --locked-schema && cd -'
+alias coreLaunch='cd core ; just install && just run'
+alias coreTest='cd core; just format && just test'
 alias editoastLaunch='cd editoast ; \
-                        ./assets/sprites/generate-atlas.sh ; \
-                        ./assets/fonts/generate-glyphs.sh ; \
-                        cargo build && \
-                        diesel migration run --locked-schema && \
-                        cargo run -- user add "mock/mocked" "Example User" && \
-                        cargo run -- roles add "mock/mocked" Admin && \
-                        ROOT_URL="http://localhost:4000/api" EDITOAST_CORE_SINGLE_WORKER=true EDITOAST_NO_CACHE=true cargo run -- runserver'
-alias editoastOnlyTest='cd editoast ; time (taplo fmt && cargo fmt --all && cargo clippy --workspace --all-features --all-targets && RUST_LOG=warn cargo test --workspace -- --test-threads=4)'
+                        ROOT_URL="http://localhost:4000/api" EDITOAST_NO_CACHE=true just run'
+alias editoastOnlyTest='cd editoast ; time (just format && just lint && RUST_LOG=warn jsut test)'
 alias editoastTest='cmpUpNoBack && editoastOnlyTest'
-alias editoastApi='./scripts/sync-openapi.sh'
+alias editoastApi='just fix-lint'
 alias rjsImport='cd editoast ; cargo run -- infra import-railjson -g' # small_infra ../tests/data/infras/small_infra/infra.json
 alias rollingImport='cd editoast ; cargo run -- import-rolling-stock' # ../tests/data/rolling_stocks/fast_rolling_stock.json
 
