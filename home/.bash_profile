@@ -50,7 +50,8 @@ export CARGO_BUILD_JOBS=3
 
 
 # Java
-export JAVA_HOME=/usr/local/jdk-21
+# export JAVA_HOME=/usr/local/jdk-21
+export JAVA_HOME=/usr/lib/jvm/java-1.21.0-openjdk-amd64
 export PATH="$JAVA_HOME/bin:$PATH"
 
 
