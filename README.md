@@ -11,7 +11,7 @@ Various linux/debian/ubuntu confs & scripts
 * snazzy colorscheme for konsole (+ all black background) : https://github.com/miedzinski/konsole-snazzy in /usr/share/konsole
   then activate it in profile
 * install fonts-firacode (and ttf-ancient-fonts-symbola if necessary on old OS), then activate it in konsole profile
-* define konsole profile to be "default" (using 'which zsh')
+* define konsole profile to be "default" (using 'which zsh') / on WSL run `chsh -s $(which zsh)`
 * rustup
 * cargo-binstall: https://github.com/cargo-bins/cargo-binstall?tab=readme-ov-file#installation
 * golang

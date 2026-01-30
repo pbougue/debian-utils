@@ -176,7 +176,7 @@ alias coreLaunch='cd core ; just install && just run'
 alias coreTest='cd core; just format && just test'
 alias editoastLaunch='cd editoast ; \
                         ROOT_URL="http://localhost:4000/api" EDITOAST_NO_CACHE=true just run'
-alias editoastOnlyTest='cd editoast ; time (just format && just lint && RUST_LOG=warn jsut test)'
+alias editoastOnlyTest='cd editoast ; time (just format && just lint && RUST_LOG=warn just test)'
 alias editoastTest='cmpUpNoBack && editoastOnlyTest'
 alias editoastApi='just fix-lint'
 alias rjsImport='cd editoast ; cargo run -- infra import-railjson -g' # small_infra ../tests/data/infras/small_infra/infra.json
@@ -219,7 +219,7 @@ alias gitDiffTastic='DFT_DISPLAY=side-by-side-show-both GIT_EXTERNAL_DIFF=difft 
 #     fi
 # }
 # alias cargoUpdate='rustup update'
-alias rustSetup='rustup toolchain install stable && rustup component add rustfmt clippy rust-src rls rust-analysis rust-docs llvm-tools-preview'
+alias rustSetup='rustup toolchain install stable && rustup component add rustfmt clippy rust-src rust-analysis rust-docs llvm-tools-preview'
 alias cargoInstalls='cargo binstall \
                         cargo-audit \
                         cargo-cache \
@@ -228,7 +228,6 @@ alias cargoInstalls='cargo binstall \
                         cargo-valgrind \
                         cargo-tarpaulin \
                         grcov \
-                        diesel_cli \
                         cargo-expand \
                         mergiraf \
                         cargo-update \
@@ -250,7 +249,9 @@ alias cargoInstalls='cargo binstall \
                         ripgrep \
                         wasm-pack ; \
                      cargo install --locked \
-                        wild-linker'
+                        wild-linker ; \
+                     cargo install --locked \
+                        diesel_cli --no-default-features --features postgres'
                         #  cargo-edit \
 alias rustUpdate='rustup update && cargo install-update -a'
 
